@@ -1,8 +1,26 @@
-# React + Vite
+## How to run project 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### first command 
+```
+npm create vite@latest > react > javascript
 
-Currently, two official plugins are available:
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### config tailwindcss
+
+follow tailwind doc to install him
+https://tailwindcss.com/docs/installation
+
+### How to run in browser and set other configurations
+see the sets shortcuts in package.json
+
+to start server vite
+```
+npm run dev
+```
+
+to start watch tailwind
+```
+npm run tailwind:watch
+```
+
