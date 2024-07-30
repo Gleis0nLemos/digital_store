@@ -19,6 +19,8 @@ to start server vite
 npm run dev
 ```
 
+*this command below was used in development, before uploading to deploy, in case you want to change something.
+
 to start watch tailwind
 ```
 npm run tailwind:watch
