@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./src/**/*.{html,js,jsx}", 
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -23,6 +24,10 @@ export default {
       backgroundImage: {
         'primary-gradient': 'linear-gradient(90deg, #C92071, #EDABCA)',
         'secondary-gradient': 'linear-gradient(90deg, #B5B6F2, #EFEFFF)',
+      },
+      spacing: {
+        '5': '20px',
+        // '34.5': '138px',
       }
     },
   },
