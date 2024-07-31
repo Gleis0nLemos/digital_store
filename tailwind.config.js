@@ -28,6 +28,9 @@ export default {
       spacing: {
         '5': '20px',
         // '34.5': '138px',
+      },
+      fontFamily: {
+        'inter': ['Inter', 'sans-serif']
       }
     },
   },

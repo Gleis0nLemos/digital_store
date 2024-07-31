@@ -6,7 +6,7 @@ import MenuIcon from '../assets/menu-icon.svg';
 
 const Header = () => {
   return ( 
-    <header className='bg-gray text-dark-gray-2'>
+    <header className='text-dark-gray-2'>
       <div class="container mx-auto flex flex-col p-5 pt-10 c-max-width">
         <div className="flex items-center justify-between">  
           <div className='flex lg:hidden'>
