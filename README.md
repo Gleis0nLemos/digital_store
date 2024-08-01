@@ -26,3 +26,13 @@ to start watch tailwind
 npm run tailwind:watch
 ```
 
+install react router dom 
+```
+npm install react-router-dom
+```
+
+install Prop Types
+```
+npm install prop-types
+```
+

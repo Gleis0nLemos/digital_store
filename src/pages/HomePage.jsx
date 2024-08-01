@@ -1,4 +1,5 @@
 import Layout from "./Layout";
+import ExamplePage from "../components/ExamplePage";
 
 const HomePage = () => {
   return (  
