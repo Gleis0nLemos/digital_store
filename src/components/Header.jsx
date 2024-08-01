@@ -40,7 +40,7 @@ const Header = () => {
               </button>
             </div>
             <button>
-              <img src={Search} alt="Search Icon" className='lg:hidden'/>
+              <img src={Search} alt="Search Icon" className='lg:hidden mr-2 mt-0.5'/>
             </button>
             <a href="#"><img src={Card} alt="Card Icon" /></a>
           </div>

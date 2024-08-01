@@ -1,4 +1,5 @@
 import Section from "./Section";
+import ProductCard from "./ProductCard";
 
 const ExamplePage = () => {
   return (  
@@ -11,8 +12,56 @@ const ExamplePage = () => {
           href: "#"
         }}
         >
-        <p>Product 1</p>
-        <p>Product 2</p>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6">
+          <ProductCard
+            image="https://via.placeholder.com/292x321"
+            name="Product 1"
+            price="$100.00"
+            priceDiscount="$80.00"
+           />
+           <ProductCard
+            image="https://via.placeholder.com/292x321"
+            name="Product 1"
+            price="$100.00"
+            priceDiscount="$80.00"
+           />
+           <ProductCard
+            image="https://via.placeholder.com/292x321"
+            name="Product 1"
+            price="$100.00"
+            priceDiscount="$80.00"
+           />
+           <ProductCard 
+            image="https://via.placeholder.com/292x321"
+            name="Product 1"
+            price="$100.00"
+            priceDiscount="$80.00"
+           />
+           <ProductCard
+            image="https://via.placeholder.com/292x321"
+            name="Product 1"
+            price="$100.00"
+            priceDiscount="$80.00"
+           />
+           <ProductCard
+            image="https://via.placeholder.com/292x321"
+            name="Product 1"
+            price="$100.00"
+            priceDiscount="$80.00"
+           />
+           <ProductCard
+            image="https://via.placeholder.com/292x321"
+            name="Product 1"
+            price="$100.00"
+            priceDiscount="$80.00"
+           />
+           <ProductCard
+            image="https://via.placeholder.com/292x321"
+            name="Product 1"
+            price="$100.00"
+            priceDiscount="$80.00"
+           />
+        </div>
       </Section>
 
       <Section
