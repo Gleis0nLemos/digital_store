@@ -35,7 +35,7 @@ const Footer = () => {
             <img src={Logo} alt="" className='' />
             <h1 className='text-2xl font-semibold pl-1'>Digital Store</h1>
           </div>
-          <p className='mt-4 md:mt-10 md:w-3/5 font-extralight'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p> 
+          <p className='mt-4 pr-4 lg:pr-0 md:mt-10 lg:w-3/5 font-extralight'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p> 
           <div className='flex gap-8 mt-5 items-center'>
             <a href="#"><img src={FacebookIcon} alt="" /></a>
             <a href="#"><img src={InstagramIcon} alt="" className='ml-1'/></a>

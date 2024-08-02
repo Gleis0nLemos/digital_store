@@ -1,9 +1,19 @@
 import Section from "./Section";
 import ProductCard from "./ProductCard";
+import Gallery from '../components/Gallery';
+import Layout from "../pages/Layout";
 
 const ExamplePage = () => {
+  const images = [
+    { src: 'https://via.placeholder.com/292x321' },
+    { src: 'https://via.placeholder.com/292x321' },
+    { src: 'https://via.placeholder.com/292x321' },
+    { src: 'https://via.placeholder.com/292x321' },
+    { src: 'https://via.placeholder.com/292x321' },
+  ]
+
   return (  
-    <div>
+    <Layout>
       <Section
         title="Products"
         titleAlign="left"
@@ -66,12 +76,17 @@ const ExamplePage = () => {
 
       <Section
         title="Gallery"
-        titleAlign="Center"
+        titleAlign="center"
         >
-        <p>Image 1</p>
-        <p>Image 2</p>
+        <Gallery 
+          images={images}
+          width="100%"
+          height="500px"
+          radius="8px"
+          showThumbs
+          />
       </Section>
-    </div>
+    </Layout>
   );
 }
  
