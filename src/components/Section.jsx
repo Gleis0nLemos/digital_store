@@ -4,7 +4,7 @@ const Section = ({ title, titleAlign="left", link, children }) => {
   const titleClass = `text-dark-gray font-bold pb-2 md:pl-0 md:py-4 md:text-2xl ${titleAlign === 'center' ? 'text-center' : 'text-left'}`;
   const linkClass = 'text-primary text-sm md:text-base'
   return (  
-    <section className="mb-8">
+    <section className="mb-4 md:mb-8">
       <div className= {`flex px-1 ${titleAlign === 'center' ? 'justify-center' : 'justify-between'} items-center`}>
         <h2 className={titleClass}>{title}</h2>
         {link && (

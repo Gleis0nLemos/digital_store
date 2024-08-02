@@ -3,6 +3,7 @@ import Gallery from '../components/Gallery'
 import Section from '../components/Section';
 import ProductCard from '../components/ProductCard';
 import ShoesProduct from '../assets/products/shoes-product.svg';
+import ProductListing from '../components/ProductListing';
 
 const HomePage = () => {
   const images = [
@@ -16,43 +17,51 @@ const HomePage = () => {
   const featureProducts = [
     {
       image: ShoesProduct,
-      name: 'Tênis',
+      category: 'Tênis',
+      name: 'K-Swiss V8 - Masculino',
       price: '$100.00',
       priceDiscount: '$80.00',
     },
     {
       image: ShoesProduct,
-      name: 'Tênis',
+      category: 'Tênis',
+      name: 'K-Swiss V8 - Masculino',
       price: '$200.00',
     },
     {
       image: ShoesProduct,
-      name: 'Tênis',
+      category: 'Tênis',
+      name: 'K-Swiss V8 - Masculino',
       price: '$200.00',
     },
     {
       image: ShoesProduct,
-      name: 'Tênis',
+      category: 'Tênis',
+      name: 'K-Swiss V8 - Masculino',
       price: '$200.00',
     },
     {
       image: ShoesProduct,
-      name: 'Tênis',
+      category: 'Tênis',
+      name: 'K-Swiss V8 - Masculino',
       price: '$200.00',
     },
     {
       image: ShoesProduct,
-      name: 'Tênis',
+      category: 'Tênis',
+      name: 'K-Swiss V8 - Masculino',
       price: '$200.00',
     },
     {
       image: ShoesProduct,
-      name: 'Tênis',
+      category: 'Tênis',
+      name: 'K-Swiss V8 - Masculino',
       price: '$200.00',
     },
     {
       image: ShoesProduct,
-      name: 'Tênis',
+      category: 'Tênis',
+      name: 'K-Swiss V8 - Masculino',
       price: '$150.00',
     }
   ]
@@ -75,18 +84,7 @@ const HomePage = () => {
           titleAlign="left"
           link={{ text: 'Ver todos', href: 'https://example.com' }}
           >
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-5">
-            {featureProducts.map((product, index) => (
-              <ProductCard 
-                key={index}
-                image={product.image}
-                category={product.category}
-                name={product.name}
-                price={product.price}
-                priceDiscount={product.priceDiscount}
-                />
-            ))}
-          </div>
+          <ProductListing products={featureProducts} />
         </Section>
       </div>
       
