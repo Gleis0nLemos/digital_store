@@ -24,7 +24,7 @@ export default {
       },
       backgroundImage: {
         'primary-gradient': 'linear-gradient(90deg, #C92071, #EDABCA)',
-        'secondary-gradient': 'linear-gradient(90deg, #B5B6F2, #EFEFFF)',
+        'secondary-gradient': 'linear-gradient(180deg, rgba(66, 0, 255, 0.25) -40.67%, rgba(255, 255, 255, 0) 100%)',    
       },
       spacing: {
         '5': '20px',
