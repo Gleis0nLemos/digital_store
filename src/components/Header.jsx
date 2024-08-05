@@ -3,8 +3,14 @@ import Logo2 from '../assets/logo_2.svg';
 import Search from '../assets/search-icon.svg';
 import Card from '../assets/card-icon.svg';
 import MenuIcon from '../assets/menu-icon.svg';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const location = useLocation();
+  const getLinkClass = (path) => (
+    location.pathname === path ? 'text-primary underline underline-offset-4 font-bold' : 'text-base'
+  );
+  
   return ( 
     <header className='text-dark-gray-2'>
       <div className="container mx-auto flex flex-col p-5 pt-10 c-max-width">
@@ -47,10 +53,10 @@ const Header = () => {
         </div>
         <nav className="hidden lg:block pt-12">
           <ul className="flex space-x-4">
-            <li><a href="#" className='hover:text-primary hover:underline underline-offset-4 hover:font-bold'>Home</a></li>
-            <li><a href="#" className='hover:text-primary hover:underline underline-offset-4 hover:font-bold'>Produtos</a></li>
-            <li><a href="#" className='hover:text-primary hover:underline underline-offset-4 hover:font-bold'>Categorias</a></li>
-            <li><a href="#" className='hover:text-primary hover:underline underline-offset-4 hover:font-bold'>Meus Pedidos</a></li>
+            <li><NavLink to="/" className={getLinkClass('/')}>Home</NavLink></li>
+            <li><NavLink to="/products" className={getLinkClass('/products')}>Produtos</NavLink></li>
+            <li><NavLink to="#" className={getLinkClass('/#')}>Categorias</NavLink></li>
+            <li><NavLink to="#" className={getLinkClass('/#')}>Meus Pedidos</NavLink></li>
           </ul>
         </nav>
       </div>
@@ -59,3 +65,5 @@ const Header = () => {
 }
  
 export default Header;           
+
+{/* <li><a href="#" className='hover:text-primary hover:underline underline-offset-4 hover:font-bold'>Home</a></li> */}
