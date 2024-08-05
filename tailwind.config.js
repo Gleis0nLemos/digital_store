@@ -20,6 +20,8 @@ export default {
         'light-gray': '#8F8F8F',
         'light-gray-2': '#CCCCCC',
         'light-gray-3': '#F5F5F5',
+        'lime': '#E7FF86',
+        'blue-gray': '#D8E3F2',
         'white': '#FFFFFF'
       },
       backgroundImage: {

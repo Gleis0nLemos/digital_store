@@ -11,3 +11,12 @@ body {
 .shoes {
   padding-right: 20px;
 }
+
+.scrolling-container::-webkit-scrollbar {
+  display: none
+}
+
+.scrolling-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

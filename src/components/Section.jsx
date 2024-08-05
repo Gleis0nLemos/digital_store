@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const Section = ({ title, titleAlign="left", link, children }) => {
-  const titleClass = `text-dark-gray font-bold pb-2 md:pl-0 md:py-4 md:text-2xl ${titleAlign === 'center' ? 'text-center' : 'text-left'}`;
+  const titleClass = `text-dark-gray-2 font-bold pb-2 md:pl-0 md:py-4 md:text-xl ${titleAlign === 'center' ? 'text-center' : 'text-left'}`;
   const linkClass = 'text-primary text-sm md:text-base'
   return (  
     <section className="mb-4 md:mb-8">
