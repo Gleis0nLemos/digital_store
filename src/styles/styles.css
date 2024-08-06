@@ -20,3 +20,32 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #d1d5db;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: inline-block;
+  position: relative;
+}
+
+.checkbox:checked {
+  background-color: #C92071;
+  border-color: #C92071;
+}
+
+.checkbox:checked::after {
+  content: '✓';
+  @apply text-white;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+}

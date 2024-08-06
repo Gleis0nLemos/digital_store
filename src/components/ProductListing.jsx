@@ -19,6 +19,8 @@ const ProductListing = ({ products, columns=4 }) => {
           image={product.image}
           category={product.category}
           name={product.name}
+          brand={product.brand}
+          gender={product.gender}
           price={product.price}
           priceDiscount={product.priceDiscount}
           />
