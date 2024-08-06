@@ -1,52 +1,41 @@
 import { useParams } from "react-router-dom";
 import Layout from "./Layout";
 import ProductCard from "../components/ProductCard";
+import Gallery from "../components/Gallery";
 
 const ProductViewPage = () => {
-  // const { id } = useParams();
-  // const product = productsData.find((p) => p.id === id);
+  const { id } = useParams();
+  const product = productsData.find((p) => p.id === id);
 
-  // if (!product) {
-  //   return <p>Produto não encontrado</p>;
-  // }
+  if (!product) {
+    return <p>Produto não encontrado</p>;
+  }
 
-  // const relatedProducts = productsData.filter((p) => p.category === product.category && p.id !== id);
+  const relatedProducts = productsData.filter((p) => p.category === product.category && p.id !== id);
+
+  // const images = [
+  //   { src: }
+  // ]
   
   return (  
     <Layout>
       <div className="container mx-auto p-4">
         <div className="flex flex-col lg:flex-row">
           {/* img */}
-          <div className="w-full lg:w-1/2">
-            <img 
-              src={product.image} 
-              alt={product.name} 
-              className="w-full h-auto object-cover"
+          <div className="w-full lg:w-1/2 mb-4 lb:mb-0">
+            <Gallery 
+              images={images}
+              showThumbs
+              width= "700px"
+              height= "570px"
+              radius="4px"
               />
           </div>
+        </div>
 
           {/* info */}
           <div className="w-full lg:w-1/2 lg:pl-8">`
-            <h1 className="text-3xl font-bold mb-2">{product.name}</h1>`
-            <p>
-              {product.priceDiscount ? (
-                <>
-                  <span className="line-through text-light-gray-2 text-lg mr-2">
-                    {product.price}
-                  </span>
-                  <span className="text-dark-gray-2 text-xl">
-                    {product.price}
-                  </span>
-                </>
-              ) : (
-                <span className="text-dark-gray-2 text-xl">{product.price}</span>
-              )}
-            </p>
-            <p className="text-lg text-dark-gray-2 mb-4">{product.description}</p>
-            <button className="bg-primary text-white py-2 px-4 rounded">
-              COMPRAR
-            </button>
-          </div>
+            {/* buybox components */}
         </div>         
             
         {/* produtos relacionados */}
@@ -68,6 +57,6 @@ const ProductViewPage = () => {
       </div>
     </Layout>
   );
-}
+};
  
 export default ProductViewPage;
