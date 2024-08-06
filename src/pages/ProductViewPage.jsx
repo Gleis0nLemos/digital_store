@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import Layout from "./Layout";
 import ProductCard from "../components/ProductCard";
 import Gallery from "../components/Gallery";
+import BuyBox from "../components/BuyBox";
 
 const ProductViewPage = () => {
   const { id } = useParams();
@@ -31,11 +32,18 @@ const ProductViewPage = () => {
               radius="4px"
               />
           </div>
-        </div>
+        
 
           {/* info */}
-          <div className="w-full lg:w-1/2 lg:pl-8">`
-            {/* buybox components */}
+          <div className="w-full lg:w-1/2 lg:pl-8">
+            <BuyBox 
+              name={product.name}
+              price={product.price}
+              priceDiscount={product.priceDiscount}
+              description={product.description}
+              />
+          </div>
+            
         </div>         
             
         {/* produtos relacionados */}
