@@ -194,24 +194,27 @@ const ProductListingPage = () => {
 
   return (
     <Layout> 
-      <div className='container mx-auto c-max-width'>
-        <div className='w-76 mr-8'>
-          <label htmlFor="sort" className='block text-dark-gray-2 text-16px mb-2'>
-            Ordenar por
-          </label>
-          <select 
-            id="sort"
-            value={sortOrder}
-            onChange={handleSortChange}
-            className='w-full h-15 p-2 border border-gray-300 rounded-md text-dark-gray-2'
-            >
-            <option value="">Selecione...</option>
-            <option value="lowest">Menor preço</option>
-            <option value="highest">Maior preço</option>
-          </select>
+      <div className='container mx-auto c-max-width p-5'>
+        <div className='flex items-center justify-between'>
+          <div htmlFor="sort" className='block text-dark-gray-2 text-sm my-5'>
+            <span className='font-bold'>Resultados para #pesquisa</span> - #numero produtos
+          </div>
+          <div className='flex items-center text-sm'>
+            <label htmlFor="sort" className='font-bold pr-2'>Ordenar por:</label>
+            <select 
+              id="sort"
+              value={sortOrder}
+              onChange={handleSortChange}
+              className='h-15 p-2 rounded-md text-dark-gray-2 custom-select'
+              >
+              <option value="">mais relevantes</option>
+              <option value="lowest">Menor preço</option>
+              <option value="highest">Maior preço</option>
+            </select>
+          </div>
         </div>
         <div className='flex pb-24'>
-          <div className='pl-5 pt-5 mr-4 hidden lg:block'>
+          <div className='pt-5 mr-4 hidden lg:block'>
             <FilterGroup 
               title="Filtrar por"
               filters={filterOptions}

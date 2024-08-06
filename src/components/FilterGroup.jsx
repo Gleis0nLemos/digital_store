@@ -1,6 +1,6 @@
 const FilterGroup = ({ title, filters, onChange }) => {
   return (
-    <div className="bg-white p-8 w-80 mb-6 rounded-md">
+    <div className="bg-white p-8 w-[280px] mb-6 rounded-md">
       <h3 className="text-dark-gray-2 font-bold">{title}</h3>
       <hr className="border border-light-gray-2 my-4" />
       {filters.map((filter, index) => (
