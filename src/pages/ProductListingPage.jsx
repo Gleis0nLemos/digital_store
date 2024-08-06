@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Layout from '../pages/Layout';
-import Section from '../components/Section';
 import ProductListing from '../components/ProductListing';
 import ShoesProduct from '../assets/products/shoes-product.svg';
 import FilterGroup from '../components/FilterGroup';
@@ -11,6 +10,7 @@ const ProductListingPage = () => {
     brand: [],
     category: [],
     gender: [],
+    state: [],
   })
 
   const productsData = [
@@ -20,6 +20,7 @@ const ProductListingPage = () => {
       name: 'K-Swiss V8 - Masculino',
       brand: 'K-Swiss',
       gender: 'Masculino',
+      state: 'Novo',
       price: '$100.00',
       priceDiscount: '$80.00',
     },
@@ -30,6 +31,7 @@ const ProductListingPage = () => {
       brand: 'K-Swiss',
       gender: 'Masculino',
       price: '$200.00',
+      state: 'Usado',
       priceDiscount: '$80.00',
     },
     {
@@ -134,30 +136,38 @@ const ProductListingPage = () => {
       label: 'Marcas',
       name: 'brand',
       options: [
-        { text: 'Adidas', value: 'Adidas' },
-        { text: 'Balenciaga', value: 'Balenciaga' },
-        { text: 'K-Swiss', value: 'K-Swiss' },
-        { text: 'Nike', value: 'Nike' },
-        { text: 'Puma', value: 'Puma' },
+        { text: 'Adidas', value: 'Adidas', type: 'checkbox' },
+        { text: 'Balenciaga', value: 'Balenciaga', type: 'checkbox' },
+        { text: 'K-Swiss', value: 'K-Swiss', type: 'checkbox' },
+        { text: 'Nike', value: 'Nike', type: 'checkbox' },
+        { text: 'Puma', value: 'Puma', type: 'checkbox' },
       ],
     },
     { 
       label: 'Categorias',
       name: 'category',
       options: [
-        { text: 'Esporte e lazer', value: 'Esporte e lazer' },
-        { text: 'Casual', value: 'Casual' },
-        { text: 'Utilitário', value: 'Utilitário' },
-        { text: 'Corrida', value: 'Corrida' },
+        { text: 'Esporte e lazer', value: 'Esporte e lazer', type: 'checkbox' },
+        { text: 'Casual', value: 'Casual', type: 'checkbox' },
+        { text: 'Utilitário', value: 'Utilitário', type: 'checkbox' },
+        { text: 'Corrida', value: 'Corrida', type: 'checkbox' },
       ],
     },
     { 
       label: 'Gênero',
       name: 'gender',
       options: [
-        { text: 'Masculino', value: 'Masculino' },
-        { text: 'Feminino', value: 'Feminino' },
-        { text: 'Unissex', value: 'Unissex' },
+        { text: 'Masculino', value: 'Masculino', type: 'checkbox' },
+        { text: 'Feminino', value: 'Feminino', type: 'checkbox' },
+        { text: 'Unissex', value: 'Unissex', type: 'checkbox' },
+      ],
+    },
+    { 
+      label: 'Estado',
+      name: 'state',
+      options: [
+        { text: 'Novo', value: 'Novo', type: 'radio' },
+        { text: 'Usado', value: 'Usado', type: 'radio' },
       ],
     },
   ]

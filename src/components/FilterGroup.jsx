@@ -9,10 +9,10 @@ const FilterGroup = ({ title, filters, onChange }) => {
           {filter.options.map((option, idx) => (
             <div key={idx} className="flex items-center mb-1">
               <input
-                type="checkbox"
+                type={option.type}
                 name={filter.name}
                 value={option.value}
-                className="checkbox"
+                className={option.type}
                 onChange={onChange}
               />
               <label className="ml-2 text-14px text-dark-gray-2">{option.text}</label>
