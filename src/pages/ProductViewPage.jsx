@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import ProductCard from "../components/ProductCard";
 import Gallery from "../components/Gallery";
 import BuyBox from "../components/BuyBox";
+import productsData from "../components/ProductsData";
 
 const ProductViewPage = () => {
   const { id } = useParams();
@@ -14,9 +15,13 @@ const ProductViewPage = () => {
 
   const relatedProducts = productsData.filter((p) => p.category === product.category && p.id !== id);
 
-  // const images = [
-  //   { src: }
-  // ]
+  const images = [
+    { src: product.image },
+    { src: product.image },
+    { src: product.image },
+    { src: product.image },
+    { src: product.image }
+  ]
   
   return (  
     <Layout>

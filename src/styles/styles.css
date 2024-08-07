@@ -2,6 +2,7 @@
 
 body {
   @apply font-inter;
+  background-color: #f8f8ff;
 }
 
 .c-max-width {

@@ -34,6 +34,9 @@ export default {
       },
       fontFamily: {
         'inter': ['Inter', 'sans-serif']
+      },
+      borderRadius: {
+        '4': '4px',
       }
     },
   },
