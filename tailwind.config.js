@@ -14,6 +14,7 @@ export default {
         error: '#EE4266',
         success: '#52CA76',
         warning: '#F6AA1C',
+        warning_2: '#c58818',
         'dark-gray': '#1F1F1F',
         'dark-gray-2': '#474747',
         'dark-gray-3': '#666666',
@@ -22,7 +23,7 @@ export default {
         'light-gray-3': '#F5F5F5',
         'lime': '#E7FF86',
         'blue-gray': '#D8E3F2',
-        'white': '#FFFFFF'
+        'white': '#FFFFFF',
       },
       backgroundImage: {
         'primary-gradient': 'linear-gradient(90deg, #C92071, #EDABCA)',

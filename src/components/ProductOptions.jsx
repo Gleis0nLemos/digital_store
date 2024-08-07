@@ -10,18 +10,21 @@ const ProductOptions = ({ options, radius, shape, type }) => {
 
   const renderOption = (option) => {
     const isSelected = selectedOption === option;
-    const baseStyle = `flex items-center justify-center cursor-pointer mr-2 mb-2 ${isSelected ? 'border-2 border-primary' : 'border border-light-gray-2'}`
+    const baseSquareStyle = `flex items-center justify-center cursor-pointer mr-2 mb-2 ${isSelected ? 'border-2 border-primary text-white bg-primary' : 'border bg-white border-light-gray-2 text-dark-gray-2'}`
+    const baseCircleStyle = `flex items-center justify-center cursor-pointer mr-3 mb-2 ${isSelected ? 'border-2 border-primary' : 'border border-white'}`
+
+
 
     if (shape === 'square') {
       return (
         <div
           key={option}
-          className={`${baseStyle} w-46 h-46`}
+          className={`${baseSquareStyle} w-12 h-12`}
           style={{ borderRadius: radius }}
           onClick={() => handleOptionClick(option)}
           >
             {type === 'text' ? (
-              <span className="text-24 text-dark-gray-2">{option}</span>
+              <span className="font-bold">{option}</span>
             ) : (
               <div style={{ backgroundColor: option, width: '100%', height: '100%' }}></div>
             )}
@@ -31,13 +34,13 @@ const ProductOptions = ({ options, radius, shape, type }) => {
       return (
         <div
           key={option}
-          className={`${baseStyle} w-31 h-31 rounded-full`}
+          className={`${baseCircleStyle} w-10 h-10 p-0.5 rounded-full`}
           onClick={() => handleOptionClick(option)}
           >
             {type === 'text' ? (
-              <span className="text-24 text-dark-gray-2">{option}</span>
+              <span>{option}</span>
             ) : (
-              <div style={{ backgroundColor: option, width: '100%', height: '100%' }}></div>
+              <div style={{ backgroundColor: option, width: '100%', height: '100%', borderRadius: '50%' }}></div>
             )}
         </div>
       );

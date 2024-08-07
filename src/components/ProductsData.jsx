@@ -9,8 +9,8 @@ const ProductsData = [
     rating: 120,
     category: 'Casual',
     brand: 'Nike',
-    price: 100,
-    priceDiscount: 80,
+    price: 280,
+    priceDiscount: 240,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
     images: [
       { src: nikeRed },
@@ -20,7 +20,7 @@ const ProductsData = [
       { src: nikeRed }
     ],
     sizeOptions: [ '39', '40', '41', '42', '43' ],
-    colorOptions: [ '#000000', '#111111', '#222222', '#333333', '#444444']
+    colorOptions: [ '#6FEEFF', '#FF6969', '#5E5E5E', '#6D70B7']
   },
   {
     id: '2',
