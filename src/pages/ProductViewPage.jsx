@@ -52,15 +52,15 @@ const ProductViewPage = () => {
   
   return (  
     <Layout>
-      <div className="container mx-auto p-4">
+      <div className="c-max-width container mx-auto p-4">
         <div className="flex flex-col lg:flex-row">
           {/* img */}
           <div className="w-full lg:w-1/2 mb-4 lb:mb-0">
             <Gallery 
               images={product.images}
               showThumbs
-              width= "700px"
-              height= "570px"
+              width= "100%"
+              height= "100%"
               radius="4px"
               />
           </div>
@@ -70,6 +70,8 @@ const ProductViewPage = () => {
           <div className="w-full lg:w-1/2 lg:pl-8">
             <BuyBox 
               name={product.name}
+              category={product.category}
+              brand={product.brand}
               reference={product.reference}
               stars={product.stars}
               rating={product.rating}
@@ -77,7 +79,7 @@ const ProductViewPage = () => {
               priceDiscount={product.priceDiscount}
               description={product.description}
             >
-              <h3 className="text-lg font-semibold mb-2">Tamanhos</h3>
+              <h3 className="text-sm text-light-gray font-semibold mb-2">Tamanho</h3>
               <ProductOptions 
                 options={product.sizeOptions}
                 shape="square"
@@ -85,7 +87,7 @@ const ProductViewPage = () => {
                 type="text"
                 />
 
-              <h3 className="text-lg font-semibold mb-2 mt-4">Cores</h3>
+              <h3 className="text-sm text-light-gray font-semibold mb-2 mt-4">Cor</h3>
               <ProductOptions 
                 options={product.colorOptions}
                 shape="circle"

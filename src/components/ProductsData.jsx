@@ -8,6 +8,7 @@ const ProductsData = [
     stars: 4.5,
     rating: 120,
     category: 'Casual',
+    brand: 'Nike',
     price: 100,
     priceDiscount: 80,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
