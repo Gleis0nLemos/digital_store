@@ -79,7 +79,7 @@ const Header = () => {
               <li><NavLink to="/" className={getLinkClass('/')}>Home</NavLink></li>
               <li><NavLink to="/products" className={getLinkClass('/products')}>Produtos</NavLink></li>
               <li><NavLink to="#" className={getLinkClass('/#')}>Categorias</NavLink></li>
-              <li><NavLink to="#" className={getLinkClass('/#')}>Meus Pedidos</NavLink></li>
+              <li><NavLink to="/myproducts" className={getLinkClass('/#')}>Meus Pedidos</NavLink></li>
             </ul>
           </nav>
         )}
