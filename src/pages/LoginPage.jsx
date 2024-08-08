@@ -1,6 +1,8 @@
 import Layout from "./Layout";
 import GmailIcon from '../assets/loginpagesvgs/gmail-icon.svg';
 import FacebookIcon from '../assets/loginpagesvgs/facebook-icon.svg';
+import FeetRight from '../assets/loginpagesvgs/feet-right.svg';
+import FeetLeft from '../assets/loginpagesvgs/feet-left.svg';
 
 const LoginPage = () => {
   return (  
@@ -42,7 +44,18 @@ const LoginPage = () => {
               </div>
             </div>
           </div>
-
+          <div className="hidden xl:flex justify-end">
+            <img 
+              src={FeetRight} 
+              alt="" 
+              className="absolute top-[160px] right-[530px]"
+              />
+            <img 
+              src={FeetLeft} 
+              alt=""
+              className="absolute top-[330px] right-[220px]"
+              />
+          </div>
         </div>
       </div>
     </Layout>
