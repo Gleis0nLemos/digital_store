@@ -1,7 +1,7 @@
 const ProductCard = ({ image, category, name, price, priceDiscount }) => {
   return (  
     <div>
-      <div className="mb-1 md:mb-4 min-h-[187px] max-h-[282px] md:max-w-[275px] md:h-[287px] xl:w-[279px] xl:h-[292px] flex items-center bg-white">
+      <div className="mb-1 md:mb-4 min-h-[187px] max-h-[282px] md:max-w-[275px] md:h-[287px] xl:w-[279px] xl:h-[292px] flex items-center bg-white shadow-sm">
         <img src={image} alt={name} className="w-auto h-auto object-cover" />
       </div>
       <div className="mb-2 md:mb-4">

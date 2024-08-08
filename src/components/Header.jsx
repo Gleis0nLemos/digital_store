@@ -48,7 +48,10 @@ const Header = () => {
             <button>
               <img src={Search} alt="Search Icon" className='lg:hidden mr-2 mt-0.5'/>
             </button>
-            <a href="#"><img src={Card} alt="Card Icon" /></a>
+            <div className='relative'>
+              <a href="#"><img src={Card} alt="Card Icon" /></a>
+              <div className="absolute w-[17px] h-[17px] bg-primary text-white text-[10px] rounded-full flex items-center justify-center top-0 right-0 transform translate-x-1/2 -translate-y-1/2 mt-1">1</div>
+            </div>
           </div>
         </div>
         <nav className="hidden lg:block pt-12">
