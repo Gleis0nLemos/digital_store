@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import Layout from "./Layout";
 import ProductCard from "../components/ProductCard";
-import Gallery from "../components/Gallery";
+import Gallery from "../components/Gallery2";
 import BuyBox from "../components/BuyBox";
 import productsData from "../components/ProductsData";
 import ProductOptions from "../components/ProductOptions";
@@ -52,10 +52,11 @@ const ProductViewPage = () => {
   
   return (  
     <Layout>
-      <div className="c-max-width container mx-auto p-4">
+      <div className="c-max-width container mx-auto p-5">
+        <p className="text-sm text-dark-gray-3 pb-8">Home / Produtos / #pesquisa / {product.brand} / {product.name}</p>
         <div className="flex flex-col lg:flex-row">
           {/* img */}
-          <div className="w-full lg:w-1/2 mb-4 lb:mb-0">
+          <div className="w-full lg:w-3/5 mb-4 lb:mb-0">
             <Gallery 
               images={product.images}
               showThumbs
@@ -67,7 +68,7 @@ const ProductViewPage = () => {
         
 
           {/* info */}
-          <div className="w-full lg:w-1/2 lg:pl-8">
+          <div className="w-full ml-3 lg:w-2/5 lg:pl-8">
             <BuyBox 
               name={product.name}
               category={product.category}

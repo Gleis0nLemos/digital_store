@@ -31,39 +31,45 @@ const Gallery = ({ className, width, height, radius, showThumbs, images }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-        <div className="overflow-hidden" style={{ borderRadius: radius }}>
+        <div className="overflow-hidden lg:h-[571px]" style={{ borderRadius: radius, backgroundColor: images[currentIndex].bgColor }}>
           <img 
             src={images[currentIndex].src} 
             alt={`image ${currentIndex + 1}`} 
-            className="w-full h-full object-cover"
+            className="w-full h-full px-24 pt-12"
             style={{ borderRadius: radius }}
             />
         </div>
         <button
           onClick={prevImage}
           disabled={currentIndex === 0}
-          className={`absolute left-0 top-1/2 trasform -translate-u-1/2 bg-transparent border-none cursor-pointer ${!isHovered ? 'hidden' : ''} disabled:opacity-50`}
+          className={`absolute left-3 top-1/2 trasform -translate-y-1/2 bg-transparent border-none cursor-pointer ${!isHovered ? 'hidden' : ''} disabled:opacity-50`}
           >
           <img src={arrowLeft} alt="Previous" />
         </button>
         <button 
           onClick={nextImage}
           disabled={currentIndex === images.length - 1}
-          className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-transparent border-none cursor-pointer ${!isHovered ? 'hidden' : ''} disabled:opacity:50`}
+          className={`absolute right-3 top-1/2 transform -translate-y-1/2 bg-transparent border-none cursor-pointer ${!isHovered ? 'hidden' : ''} disabled:opacity-50`}
           >
           <img src={arrowRight} alt="Next" />
         </button>
         {showThumbs ? (
-          <div className="flex mt-4 space-x-2">
+          <div className="flex mt-4 gap-8">
             {images.map((image, index) => (
-              <img
-                key={index} 
-                src={image.src} 
-                alt={`Thumbnall ${index + 1}`} 
+              <div
+                key={index}
                 onClick={() => selectImage(index)}
+                alt={`Thumbnall ${index + 1}`} 
                 className={`w-28 h-24 px-4 cursor-pointer ${index === currentIndex ? 'border-2 border-primary' : ''}`}
-                style={{ borderRadius: radius }}
-                />
+                style={{ backgroundColor: image.bgColor, borderRadius: radius }}
+                >
+                <img
+                  key={index} 
+                  src={image.src}
+                  className="w-full h-full"
+                  style={{ borderRadius: radius }} 
+                  />
+              </div>
               ))}
           </div>  
         ) : (
@@ -90,7 +96,8 @@ Gallery.propTypes = {
   showThumbs: PropTypes.bool,
   images: PropTypes.arrayOf(
     PropTypes.shape({
-      src: PropTypes.string.isRequired
+      src: PropTypes.string.isRequired,
+      bgColor: PropTypes.string
     })
   ).isRequired
 }

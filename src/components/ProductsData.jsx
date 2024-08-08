@@ -5,7 +5,7 @@ const ProductsData = [
     id: '1',
     name: 'Tênis Nike Revolution 6 Next Nature Masculino',
     reference: 'REF123456',
-    stars: 4.5,
+    stars: 4.7,
     rating: 120,
     category: 'Casual',
     brand: 'Nike',
@@ -13,11 +13,11 @@ const ProductsData = [
     priceDiscount: 240,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
     images: [
-      { src: nikeRed },
-      { src: nikeRed },
-      { src: nikeRed },
-      { src: nikeRed },
-      { src: nikeRed }
+      { src: nikeRed, bgColor: '#E2E3FF' },
+      { src: nikeRed, bgColor: '#FFE8BC' },
+      { src: nikeRed, bgColor: '#FFC0BC' },
+      { src: nikeRed, bgColor: '#DEC699' },
+      { src: nikeRed, bgColor: '#E8DFCF' }
     ],
     sizeOptions: [ '39', '40', '41', '42', '43' ],
     colorOptions: [ '#6FEEFF', '#FF6969', '#5E5E5E', '#6D70B7']

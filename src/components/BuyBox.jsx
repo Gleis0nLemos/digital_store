@@ -8,16 +8,16 @@ import GenerateStars from "./generateStars";
 const BuyBox = ({ name, category, brand, reference, stars, rating, price, priceDiscount, description, children }) => {
 
   return (  
-    <div className="p-6 border rounded-lg shadow-sm">
+    <div className="rounded-lg shadow-sm">
       <h1 className="text-4xl text-dark-gray mb-2 font-extrabold">{name}</h1>
-      <div className="flex gap-1">
-        <p className="text-xs text-dark-gray-3 mb-4">{category} |</p>
-        <p className="text-xs text-dark-gray-3 mb-4">{brand} |</p>
-        <p className="text-xs text-dark-gray-3 mb-4">REF: {reference}</p>
+      <div className="flex gap-1 mb-2">
+        <p className="text-xs text-dark-gray-3">{category} |</p>
+        <p className="text-xs text-dark-gray-3">{brand} |</p>
+        <p className="text-xs text-dark-gray-3">REF: {reference}</p>
       </div>
 
 
-      <div className="flex items-center gap-1 mb-4">
+      <div className="flex items-center gap-1 mb-6">
         <div className="mr-2">
           <GenerateStars rating={stars} />  
         </div>
@@ -49,14 +49,14 @@ const BuyBox = ({ name, category, brand, reference, stars, rating, price, priceD
         )}
       </div>
       
-      <div className="my-4">
+      <div className="my-6">
         <h2 className="text-sm text-light-gray font-bold pb-1">Descrição do produto</h2>
         <p className="text-sm text-dark-gray-2 mb-4">{description}</p>
       </div>
 
-      <div className="mb-4">{children}</div>
+      <div className="mb-5">{children}</div>
     
-      <button className="bg-warning text-white py-3 px-20 rounded-md hover:bg-warning_2">
+      <button className="bg-warning text-white py-2 px-16 rounded-md hover:bg-warning_2">
         COMPRAR
       </button>
     </div>
