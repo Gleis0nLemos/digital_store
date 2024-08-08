@@ -17,7 +17,7 @@ const Header = () => {
     location.pathname === path ? 'text-primary underline underline-offset-4 font-bold' : 'text-base'
   );
 
-  const isLoginPage = location.pathname === '/login';
+  const isLoginPage = location.pathname === '/login' || location.pathname === '/login/register';
   
   return ( 
     <header className='text-dark-gray-2 bg-white'>

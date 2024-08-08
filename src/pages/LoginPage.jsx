@@ -3,6 +3,7 @@ import GmailIcon from '../assets/loginpagesvgs/gmail-icon.svg';
 import FacebookIcon from '../assets/loginpagesvgs/facebook-icon.svg';
 import FeetRight from '../assets/loginpagesvgs/feet-right.svg';
 import FeetLeft from '../assets/loginpagesvgs/feet-left.svg';
+import { NavLink } from "react-router-dom";
 
 const LoginPage = () => {
   return (  
@@ -27,12 +28,14 @@ const LoginPage = () => {
                 focus:outline-none focus:ring-primary focus:border-transparent mb-6"
                 placeholder="Insira seu e-mail"
                 />
-              <button
-                type="submit"
-                className="w-full bg-primary text-white py-3 mt-4 rounded-lg font-bold hover:bg-tertiary"
-                >
-                Criar Conta
-              </button>
+              <NavLink to="/login/register">
+                <button
+                  type="submit"
+                  className="w-full bg-primary text-white py-3 mt-4 rounded-lg font-bold hover:bg-tertiary"
+                  >
+                  Criar Conta
+                </button>
+              </NavLink>
             </form>
             <div className="flex items-center justify-center mt-8">
               <p className="text-base text-dark-gray-2 mr-2">
