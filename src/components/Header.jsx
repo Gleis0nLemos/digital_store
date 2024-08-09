@@ -13,13 +13,17 @@ const Header = () => {
     navigate('/login');
   }
 
-  const getLinkClass = (path) => (
-    location.pathname === path ? 'text-primary underline underline-offset-4 font-bold' : 'text-base'
-  );
+  const getLinkClass = (path) => {
+    if (location.pathname === path || (path === '/products' && location.pathname.startsWith('/products'))) {
+      return 'text-primary underline underline-offset-4 font-bold';
+    } else {
+      return 'text-base';
+    }
+  };
 
   const isLoginPage = location.pathname === '/login' || location.pathname === '/login/register';
-  
-  return ( 
+
+  return (
     <header className='text-dark-gray-2 bg-white'>
       <div className="container mx-auto flex flex-col p-5 pt-10 c-max-width">
         <div className="flex items-center justify-between">
@@ -29,48 +33,50 @@ const Header = () => {
                 <img src={MenuIcon} alt="Menu Icon" />
               </button>
             </div>
-          )}  
+          )}
           <div className="flex justify-center lg:justify-start">
             <NavLink to="/"><img src={Logo} alt="" className="block mx-auto pl-4 lg:hidden" /></NavLink>
             <NavLink to="/"><img src={Logo2} alt="" className='hidden lg:block' /></NavLink>
 
             {!isLoginPage && (
               <div className="hidden relative items-center ml-6 lg:flex">
-                <input 
+                <input
                   type="text"
                   placeholder='Pesquisar produto'
                   className='bg-light-gray-3 flex md:hidden lg:flex pl-6 py-4 w-[400px] lg:w-[410px] xl:w-[559px] rounded-lg border-none focus:outline-none'
                 />
                 <div className='absolute right-4 items-center flex'>
                   <button>
-                    <img src={Search} alt="Search icon" />   
+                    <img src={Search} alt="Search icon" />
                   </button>
                 </div>
               </div>
             )}
           </div>
-         
 
-         {!isLoginPage && (
-          <div className="flex items-center">
-            <div className="hidden gap-6 items-center lg:pr-8 xl:pr-12 lg:flex">
-              <a href="#" className='underline-offset-4 underline'>Cadastrar-se</a>
-              <button 
-                className='bg-primary text-white px-8 py-2 rounded-lg font-bold hover:bg-tertiary'
-                onClick={handleLoginClick}
+
+          {!isLoginPage && (
+            <div className="flex items-center">
+              <div className="hidden gap-6 items-center lg:pr-8 xl:pr-12 lg:flex">
+                <a href="#" className='underline-offset-4 underline'>Cadastrar-se</a>
+                <button
+                  className='bg-primary text-white px-8 py-2 rounded-lg font-bold hover:bg-tertiary'
+                  onClick={handleLoginClick}
                 >
-                Entrar
+                  Entrar
+                </button>
+              </div>
+              <button>
+                <img src={Search} alt="Search Icon" className='lg:hidden mr-2 mt-0.5' />
               </button>
+              <div className='relative'>
+                <NavLink to={"/products/card"}>
+                  <img src={Card} alt="Card Icon" />
+                </NavLink>
+                <div className="absolute w-[17px] h-[17px] bg-primary text-white text-[10px] rounded-full flex items-center justify-center top-0 right-0 transform translate-x-1/2 -translate-y-1/2 mt-1">1</div>
+              </div>
             </div>
-            <button>
-              <img src={Search} alt="Search Icon" className='lg:hidden mr-2 mt-0.5'/>
-            </button>
-            <div className='relative'>
-              <a href="#"><img src={Card} alt="Card Icon" /></a>
-              <div className="absolute w-[17px] h-[17px] bg-primary text-white text-[10px] rounded-full flex items-center justify-center top-0 right-0 transform translate-x-1/2 -translate-y-1/2 mt-1">1</div>
-            </div>
-          </div>
-         )}
+          )}
         </div>
 
         {!isLoginPage && (
@@ -87,5 +93,5 @@ const Header = () => {
     </header>
   );
 }
- 
+
 export default Header;           
