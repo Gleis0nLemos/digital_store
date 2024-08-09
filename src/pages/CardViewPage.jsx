@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Layout from "./Layout";
 import ProductsData from "../components/ProductsData"; // Ajuste o caminho conforme necessário
+import Section from "../components/Section";
+import ProductListing from "../components/ProductListing";
+import ShoesProduct from "../assets/products/shoes-product.svg"
 
 const CardViewPage = () => {
   const product = ProductsData[0]; // Substitua isso pelo método adequado para obter o produto correto
@@ -35,6 +38,37 @@ const CardViewPage = () => {
   const frete = 15.0; // Exemplo de valor fixo de frete
   const desconto = totalOriginal - total;
   const subtotal = total + frete;
+
+  const recommendedProducts = [
+    {
+      image: ShoesProduct,
+      category: 'Tênis',
+      name: 'K-Swiss V8 - Masculino',
+      price: '$100.00',
+      priceDiscount: '$80.00',
+    },
+    {
+      image: ShoesProduct,
+      category: 'Tênis',
+      name: 'K-Swiss V8 - Masculino',
+      price: '$100.00',
+      priceDiscount: '$80.00',
+    },
+    {
+      image: ShoesProduct,
+      category: 'Tênis',
+      name: 'K-Swiss V8 - Masculino',
+      price: '$100.00',
+      priceDiscount: '$80.00',
+    },
+    {
+      image: ShoesProduct,
+      category: 'Tênis',
+      name: 'K-Swiss V8 - Masculino',
+      price: '$100.00',
+      priceDiscount: '$80.00',
+    },
+  ]
 
   return (
     <Layout>
@@ -175,6 +209,18 @@ const CardViewPage = () => {
             Continuar
           </button>
         </div>
+
+
+      </div>
+
+      <div className="hidden lg:flex c-max-width mx-auto p-5">
+        <Section
+            title="Produtos relacionados"
+            titleAlign="left"
+            link={{ text: 'Ver todos', href: '/products' }}
+          >
+            <ProductListing products={recommendedProducts} />
+          </Section>
       </div>
     </Layout>
   );

@@ -49,27 +49,27 @@ const ProductViewPage = () => {
       priceDiscount: '$80.00',
     },
   ]
-  
-  return (  
+
+  return (
     <Layout>
       <div className="c-max-width container mx-auto p-5">
         <p className="text-sm text-dark-gray-3 pb-8">Home / Produtos / #pesquisa / {product.brand} / {product.name}</p>
         <div className="flex flex-col lg:flex-row">
           {/* img */}
           <div className="w-full lg:w-3/5 mb-4 lb:mb-0">
-            <Gallery 
+            <Gallery
               images={product.images}
               showThumbs
-              width= "100%"
-              height= "100%"
+              width="100%"
+              height="100%"
               radius="4px"
-              />
+            />
           </div>
-        
+
 
           {/* info */}
           <div className="w-full ml-3 lg:w-2/5 lg:pl-8">
-            <BuyBox 
+            <BuyBox
               name={product.name}
               category={product.category}
               brand={product.brand}
@@ -81,32 +81,32 @@ const ProductViewPage = () => {
               description={product.description}
             >
               <h3 className="text-sm text-light-gray font-semibold mb-2">Tamanho</h3>
-              <ProductOptions 
+              <ProductOptions
                 options={product.sizeOptions}
                 shape="square"
                 radius="4px"
                 type="text"
-                />
+              />
 
               <h3 className="text-sm text-light-gray font-semibold mb-2 mt-4">Cor</h3>
-              <ProductOptions 
+              <ProductOptions
                 options={product.colorOptions}
                 shape="circle"
                 type="color"
-                />
+              />
             </BuyBox>
           </div>
-        </div>         
-          <Section
-            title="Produtos relacionados"
-            titleAlign="left"
-            link={{ text: 'Ver todos', href: '/products'}}
-            >
-            <ProductListing products={recommendedProducts} />
-          </Section>
+        </div>
+        <Section
+          title="Produtos relacionados"
+          titleAlign="left"
+          link={{ text: 'Ver todos', href: '/products' }}
+        >
+          <ProductListing products={recommendedProducts} />
+        </Section>
       </div>
     </Layout>
   );
 };
- 
+
 export default ProductViewPage;

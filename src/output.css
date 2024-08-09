@@ -998,6 +998,10 @@ video {
   width: 25%;
 }
 
+.w-2\/4 {
+  width: 50%;
+}
+
 .min-w-max {
   min-width: -moz-max-content;
   min-width: max-content;
