@@ -11,15 +11,16 @@ const SideMenu = ({ selectedMenu, setSelectedMenu }) => {
   ];
 
   return (
-    <nav className="w-1/4 bg-gray-100 p-4">
+    <nav className="w-[370px] bg-white p-5 shadow-sm">
       <ul>
         {menuItems.map(item => (
           <li
             key={item.id}
-            className={`p-2 cursor-pointer ${selectedMenu === item.id ? 'bg-yellow-300' : ''}`}
+            className={`p-2 cursor-pointer ${selectedMenu === item.id ? 'text-primary font-bold' : ''}`}
             onClick={() => setSelectedMenu(item.id)}
           >
             {item.label}
+            <hr className="border-2 border-light-gray-3 my-2" />
           </li>
         ))}
       </ul>

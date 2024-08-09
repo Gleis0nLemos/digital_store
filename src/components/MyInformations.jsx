@@ -1,4 +1,3 @@
-// src/components/Information.jsx
 import React from 'react';
 
 const Information = () => {

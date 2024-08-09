@@ -15,7 +15,7 @@ const MyRequestsPage = () => {
         return <Profile />;
       case 'orders':
         return <Orders />;
-      case 'requests':
+      case 'information':
         return <MyInformations />;
       default:
         return <PaymentMethods />;
@@ -24,9 +24,9 @@ const MyRequestsPage = () => {
   
   return (  
     <Layout>
-      <div className="flex">
+      <div className="flex mx-auto c-max-width my-12 p-5">
         <SideMenu selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu}/>
-        <div className="flex-1 p-4">
+        <div className="flex-1 bg-white ml-4 p-5 shadow-sm">
           {renderContent()}  
         </div>  
       </div>
