@@ -1943,8 +1943,20 @@ video {
 }
 
 @media (min-width: 1024px) {
+  .lg\:relative {
+    position: relative;
+  }
+
   .lg\:ml-24 {
     margin-left: 6rem;
+  }
+
+  .lg\:ml-6 {
+    margin-left: 1.5rem;
+  }
+
+  .lg\:mt-0 {
+    margin-top: 0px;
   }
 
   .lg\:block {
@@ -1973,6 +1985,18 @@ video {
 
   .lg\:w-\[410px\] {
     width: 410px;
+  }
+
+  .lg\:w-auto {
+    width: auto;
+  }
+
+  .lg\:max-w-md {
+    max-width: 28rem;
+  }
+
+  .lg\:flex-1 {
+    flex: 1 1 0%;
   }
 
   .lg\:grid-cols-3 {
