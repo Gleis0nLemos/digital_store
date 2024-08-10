@@ -45,8 +45,8 @@ const Header = () => {
   const isLoginPage = location.pathname === '/login' || location.pathname === '/login/register';
 
   return (
-    <header className='text-dark-gray-2 bg-white'>
-      <div className={`container mx-auto flex flex-col p-5 pt-10 c-max-width ${isMenuOpen ? 'opacity-50' : ''}`}>
+<header className='text-dark-gray-2 bg-white z-50'>
+<div className='container mx-auto flex flex-col p-5 pt-10 c-max-width'>
         <div className="flex items-center justify-between">
           {!isLoginPage && (
             <div className='flex lg:hidden'>
