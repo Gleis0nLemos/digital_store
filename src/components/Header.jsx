@@ -4,11 +4,12 @@ import Logo2 from '../assets/logo_2.svg';
 import Search from '../assets/search-icon.svg';
 import Card from '../assets/card-icon.svg';
 import MenuIcon from '../assets/menu-icon.svg';
-import NikeRed from '../assets/productview/nike-red-shoe.svg'; // Importando imagem dos produtos
+import NikeRed from '../assets/productview/nike-red-shoe.svg';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import ShoppingCart from './ShoppingCart'; // Importando o novo componente
 
 const Header = () => {
-  const [isCartPopupOpen, setIsCartPopupOpen] = useState(false); // Estado para controlar o pop-up do carrinho
+  const [isCartPopupOpen, setIsCartPopupOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const cartRef = useRef(null);
@@ -126,16 +127,14 @@ const Header = () => {
                     <hr className="border border-light-gray-2 mb-4" />
                     <div className="mb-4">
                       {recommendedProducts.map((product, index) => (
-                        <div key={index} className="flex items-center mb-4">
-                          <img src={product.image} alt={product.name} className="w-16 h-16 px-1 bg-[#E2E3FF] mr-4" />
-                          <div>
-                            <p className="text-sm font-bold">{product.name}</p>
-                            <div className='flex gap-4 pt-1 items-center'>
-                              <p className="text-dark-gray font-bold">{product.priceDiscount}</p>
-                              <p className="text-xs font-bold text-light-gray line-through">{product.price}</p>
-                            </div>
-                          </div>
-                        </div>
+                        <ShoppingCart 
+                          key={index}
+                          image={product.image}
+                          category={product.category}
+                          name={product.name}
+                          price={product.price}
+                          priceDiscount={product.priceDiscount}
+                        />
                       ))}
                     </div>
                     <hr className="border border-light-gray-2 mb-4" />
