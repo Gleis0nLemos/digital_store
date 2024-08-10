@@ -1,12 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import Logo from '../assets/logo.svg';
-import Logo2 from '../assets/logo_2.svg';
 import Card from '../assets/card-icon.svg';
 import MenuIcon from '../assets/menu-icon.svg';
 import SearchIcon from '../assets/search-icon.svg';
 import CartPopUp from './CartPopUp';
 import SearchBar from './SearchBar';
+import Logo from './Logo';
 
 const Header = () => {
   const [isCartPopupOpen, setIsCartPopupOpen] = useState(false);
@@ -46,8 +45,7 @@ const Header = () => {
             </div>
           )}
           <div className="flex justify-center lg:justify-start">
-            <NavLink to="/"><img src={Logo} alt="Logo" className="block mx-auto pl-4 lg:hidden" /></NavLink>
-            <NavLink to="/"><img src={Logo2} alt="Logo2" className='hidden lg:block' /></NavLink>
+            <Logo isLoginPage={isLoginPage} />
             {!isLoginPage && <SearchBar />}
           </div>
           {!isLoginPage && (
@@ -62,7 +60,7 @@ const Header = () => {
                 </button>
               </div>
               <button>
-                <img src={SearchIcon} alt="Search Icon" className='lg:hidden mr-2 mt-0.5' />
+                <img src={SearchIcon} alt="Search Icon" className='lg:hidden mr-2 pb-1' />
               </button>
               <div className='relative'>
                 <button onClick={toggleCartPopup}>
