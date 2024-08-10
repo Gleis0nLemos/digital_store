@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Card from '../assets/card-icon.svg';
 import MenuIcon from '../assets/menu-icon.svg';
@@ -6,11 +6,22 @@ import SearchIcon from '../assets/search-icon.svg';
 import CartPopUp from './CartPopUp';
 import SearchBar from './SearchBar';
 import Logo from './Logo';
+import MenuSmallNav from './MenuSmallNav';  // Importe o novo componente
 
 const Header = () => {
   const [isCartPopupOpen, setIsCartPopupOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para o menu lateral
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    // Adiciona a classe 'overflow-hidden' ao <body> quando o menu está aberto
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
+    return () => {
+      // Remove a classe 'overflow-hidden' ao desmontar o componente
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
 
   const handleLoginClick = useCallback(() => {
     navigate('/login');
@@ -35,11 +46,11 @@ const Header = () => {
 
   return (
     <header className='text-dark-gray-2 bg-white'>
-      <div className="container mx-auto flex flex-col p-5 pt-10 c-max-width">
+      <div className={`container mx-auto flex flex-col p-5 pt-10 c-max-width ${isMenuOpen ? 'opacity-50' : ''}`}>
         <div className="flex items-center justify-between">
           {!isLoginPage && (
             <div className='flex lg:hidden'>
-              <button>
+              <button onClick={() => setIsMenuOpen(true)}>
                 <img src={MenuIcon} alt="Menu Icon" />
               </button>
             </div>
@@ -88,6 +99,7 @@ const Header = () => {
           </nav>
         )}
       </div>
+      <MenuSmallNav isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} /> 
     </header>
   );
 };
