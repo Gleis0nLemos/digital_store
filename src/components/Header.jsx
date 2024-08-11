@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Card from '../assets/card-icon.svg';
 import MenuIcon from '../assets/menu-icon.svg';
@@ -6,22 +6,35 @@ import SearchIcon from '../assets/search-icon.svg';
 import CartPopUp from './CartPopUp';
 import SearchBar from './SearchBar';
 import Logo from './Logo';
-import MenuSmallNav from './MenuSmallNav';  // Importe o novo componente
+import MenuSmallNav from './MenuSmallNav';
 
 const Header = () => {
   const [isCartPopupOpen, setIsCartPopupOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para o menu lateral
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchInputVisible, setIsSearchInputVisible] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const searchInputRef = useRef(null);
 
   useEffect(() => {
-    // Adiciona a classe 'overflow-hidden' ao <body> quando o menu está aberto
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
     return () => {
-      // Remove a classe 'overflow-hidden' ao desmontar o componente
       document.body.style.overflow = 'auto';
     };
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchInputRef.current && !searchInputRef.current.contains(event.target)) {
+        setIsSearchInputVisible(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleLoginClick = useCallback(() => {
     navigate('/login');
@@ -36,6 +49,10 @@ const Header = () => {
     navigate('/products/card');
   }, [navigate]);
 
+  const toggleSearchInput = () => {
+    setIsSearchInputVisible(prev => !prev);
+  };
+
   const getLinkClass = (path) => {
     return location.pathname === path || (path === '/products' && location.pathname.startsWith('/products'))
       ? 'text-primary underline underline-offset-4 font-bold'
@@ -45,8 +62,8 @@ const Header = () => {
   const isLoginPage = location.pathname === '/login' || location.pathname === '/login/register';
 
   return (
-<header className='text-dark-gray-2 bg-white z-50'>
-<div className='container mx-auto flex flex-col p-5 pt-10 c-max-width'>
+    <header className='text-dark-gray-2 bg-white z-50'>
+      <div className='container mx-auto flex flex-col p-5 pt-10 c-max-width'>
         <div className="flex items-center justify-between">
           {!isLoginPage && (
             <div className='flex lg:hidden'>
@@ -70,7 +87,7 @@ const Header = () => {
                   Entrar
                 </button>
               </div>
-              <button>
+              <button onClick={toggleSearchInput} className={`${isSearchInputVisible ? 'text-primary' : ''}`}>
                 <img src={SearchIcon} alt="Search Icon" className='lg:hidden mr-2 pb-1' />
               </button>
               <div className='relative'>
@@ -99,7 +116,23 @@ const Header = () => {
           </nav>
         )}
       </div>
-      <MenuSmallNav isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} /> 
+      <MenuSmallNav isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      {isSearchInputVisible && (
+        <div className='container bg-white px-4 pb-2 mx-auto mt-2 relative'>
+          <div className="relative" ref={searchInputRef}>
+            <input
+              type="text"
+              placeholder="Pesquisar produto"
+              className='bg-light-gray-3 flex pl-4 py-2 w-full md:w-[300px] rounded-lg border-none focus:outline-none'
+            />
+            <img
+              src={SearchIcon}
+              alt="Search Icon"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2"
+            />
+          </div>
+        </div>
+      )}
     </header>
   );
 };
