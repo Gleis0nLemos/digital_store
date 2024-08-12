@@ -30,16 +30,20 @@ const ProductListingPage = () => {
       body.classList.add('no-scroll');
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       body.style.marginRight = `${scrollbarWidth}px`;
+      body.style.overflow = 'hidden'; // Adicione isso
     } else {
       body.classList.remove('no-scroll');
       body.style.marginRight = '0';
+      body.style.overflow = ''; // Adicione isso
     }
-
+  
     return () => {
       body.classList.remove('no-scroll');
       body.style.marginRight = '0';
+      body.style.overflow = ''; // Adicione isso
     };
   }, [isSidebarOpen]);
+  
 
   const filteredProducts = useMemo(() => {
     return ProductsData.filter(product => {

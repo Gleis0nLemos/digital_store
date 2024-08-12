@@ -87,13 +87,12 @@ body {
   border: none;
 }
 
-/* Desativar a rolagem do corpo e esconder a barra de rolagem */
+/* Desativar rolagem da página principal */
 .no-scroll {
   overflow: hidden;
 }
 
-/* Estilizar o menu de filtros para ter rolagem interna se necessário */
+/* Estilizar o menu de filtros */
 .filter-menu {
   overflow-y: auto;
 }
-
