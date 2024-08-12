@@ -4,6 +4,7 @@ import Layout from '../pages/Layout';
 import ProductListing from '../components/ProductListing';
 import FilterGroup from '../components/FilterGroup';
 import ProductsData from '../components/ProductsData';
+import FilterIcon from '../assets/filter-icon.svg';
 
 const ProductListingPage = () => {
   const location = useLocation();
@@ -105,24 +106,27 @@ const ProductListingPage = () => {
   return (
     <Layout> 
       <div className='container mx-auto c-max-width p-5'>
-        <div className='flex items-center justify-between'>
-          <div htmlFor="sort" className='block text-dark-gray-2 text-sm my-5'>
-            <span className='font-bold'>Resultados para "{searchTerm}"</span> - {sortedProducts.length} produtos
-          </div>
-          <div className='flex items-center text-sm'>
-            <label htmlFor="sort" className='font-bold pr-2'>Ordenar por:</label>
-            <select 
-              id="sort"
-              value={sortOrder}
-              onChange={handleSortChange}
-              className='h-15 p-2 rounded-md text-dark-gray-2 custom-select'
-              aria-label="Ordenar por"
-              >
-              <option value="">mais relevantes</option>
-              <option value="lowest">Menor preço</option>
-              <option value="highest">Maior preço</option>
-            </select>
-          </div>
+        <div className='flex flex-col md:flex-row md:items-center justify-between'> 
+            <div className='flex text-dark-gray-2 text-sm my-5 w-full order-2 md:order-1 md:w-auto'>
+              <span className='font-bold pr-1'>Resultados para "{searchTerm}"</span> - {sortedProducts.length} produtos
+            </div>
+            <div className='flex items-center text-sm w-full md:w-auto mt-4 order-1 md:order-2 md:mt-0'>
+              <label htmlFor="sort" className='font-bold pr-2'>Ordenar por:</label>
+              <select 
+                id="sort"
+                value={sortOrder}
+                onChange={handleSortChange}
+                className='h-15 p-2 mr-8 rounded-md text-dark-gray-2 custom-select md:w-auto'
+                aria-label="Ordenar por"
+                >
+                <option value="">mais relevantes</option>
+                <option value="lowest">Menor preço</option>
+                <option value="highest">Maior preço</option>
+              </select>
+              <button>
+                <img src={FilterIcon} alt="" />
+              </button>
+            </div>
         </div>
         <div className='flex pb-24'>
           <div className='pt-5 mr-4 hidden lg:block'>
@@ -138,7 +142,7 @@ const ProductListingPage = () => {
         </div>
       </div>
     </Layout>
-  );
+  );  
 };
 
 export default ProductListingPage;
