@@ -71,7 +71,7 @@ const ProductViewPage = () => {
           </div>
 
           {/* info */}
-          <div className="w-full ml-3 lg:w-2/5 lg:pl-8">
+          <div className="w-full md:ml-3 lg:w-2/5 lg:pl-8">
             <BuyBox
               name={product.name}
               category={product.category}
