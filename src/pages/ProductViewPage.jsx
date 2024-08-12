@@ -9,15 +9,15 @@ import ShoesProduct from "../assets/products/shoes-product.svg"
 import Section from "../components/Section";
 import ProductListing from "../components/ProductListing";
 
+
 const ProductViewPage = () => {
   const { id } = useParams();
+
   const product = productsData.find((p) => p.id === id);
 
   if (!product) {
     return <p>Produto não encontrado</p>;
   }
-
-  // const relatedProducts = productsData.filter((p) => p.category === product.category && p.id !== id);
 
   const recommendedProducts = [
     {
@@ -102,7 +102,7 @@ const ProductViewPage = () => {
           titleAlign="left"
           link={{ text: 'Ver todos', href: '/products' }}
         >
-          <ProductListing products={recommendedProducts} />
+          <ProductListing key={product.id} products={recommendedProducts} />
         </Section>
       </div>
     </Layout>

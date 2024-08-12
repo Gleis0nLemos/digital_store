@@ -30,21 +30,20 @@ const ProductListingPage = () => {
       body.classList.add('no-scroll');
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       body.style.marginRight = `${scrollbarWidth}px`;
-      body.style.overflow = 'hidden'; // Adicione isso
+      body.style.overflow = 'hidden';
     } else {
       body.classList.remove('no-scroll');
       body.style.marginRight = '0';
-      body.style.overflow = ''; // Adicione isso
+      body.style.overflow = '';
     }
   
     return () => {
       body.classList.remove('no-scroll');
       body.style.marginRight = '0';
-      body.style.overflow = ''; // Adicione isso
+      body.style.overflow = '';
     };
   }, [isSidebarOpen]);
   
-
   const filteredProducts = useMemo(() => {
     return ProductsData.filter(product => {
       const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -133,9 +132,11 @@ const ProductListingPage = () => {
     <Layout>
       <div className='container mx-auto c-max-width p-5'>
         <div className='flex flex-col md:flex-row md:items-center justify-between'>
-          <div className='flex text-dark-gray-2 text-sm my-5 w-full order-2 md:order-1 md:w-auto'>
-            <span className='font-bold pr-1'>Resultados para "{searchTerm}"</span> - {sortedProducts.length} produtos
-          </div>
+          {searchTerm && (
+            <div className='flex text-dark-gray-2 text-sm my-5 w-full order-2 md:order-1 md:w-auto'>
+              <span className='font-bold pr-1'>Resultados para "{searchTerm}"</span> - {sortedProducts.length} produtos
+            </div>
+          )}
           <div className='flex items-center text-sm w-full md:w-auto mt-4 order-1 md:order-2 md:mt-0'>
             <label htmlFor="sort" className='font-bold pr-2'>Ordenar por:</label>
             <select 
