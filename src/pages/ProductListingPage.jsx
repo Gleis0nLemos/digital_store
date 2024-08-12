@@ -1,121 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import Layout from '../pages/Layout';
 import ProductListing from '../components/ProductListing';
-import ShoesProduct from '../assets/products/shoes-product.svg';
 import FilterGroup from '../components/FilterGroup';
+import ProductsData from '../components/ProductsData';
 
 const ProductListingPage = () => {
+  const location = useLocation();
+  const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('');
   const [filters, setFilters] = useState({
     brand: [],
     category: [],
     gender: [],
     state: [],
-  })
+  });
 
-  const productsData = [
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      state: 'Novo',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$200.00',
-      state: 'Usado',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$200.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$200.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$300.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Feminino',
-      price: '$200.00',
-      priceDiscount: '$180.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Feminino',
-      price: '$500.00',
-      priceDiscount: '$450.00',
-    },
-  ];
+  useEffect(() => {
+    if (location.state?.searchTerm) {
+      setSearchTerm(location.state.searchTerm);
+    }
+  }, [location.state]);
+
+  const filteredProducts = useMemo(() => {
+    return ProductsData.filter(product => {
+      const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                product.brand.toLowerCase().includes(searchTerm.toLowerCase());
+
+      const matchesBrand = filters.brand.length === 0 || filters.brand.includes(product.brand);
+      const matchesCategory = filters.category.length === 0 || filters.category.includes(product.category);
+      const matchesState = filters.state.length === 0 || filters.state.includes(product.state);
+
+      return matchesSearchTerm && matchesBrand && matchesCategory && matchesState;
+    });
+  }, [searchTerm, filters]);
+
+  const sortedProducts = useMemo(() => {
+    return [...filteredProducts].sort((a, b) => {
+      if (sortOrder === 'lowest') {
+        return a.price - b.price;
+      }
+      if (sortOrder === 'highest') {
+        return b.price - a.price;
+      }
+      return 0;
+    });
+  }, [filteredProducts, sortOrder]);
 
   const handleSortChange = (event) => {
     setSortOrder(event.target.value);
@@ -123,11 +54,11 @@ const ProductListingPage = () => {
 
   const handleFilterChange = (event) => {
     const { name, value, checked } = event.target;
-    setFilters((prevFilters) => ({
+    setFilters(prevFilters => ({
       ...prevFilters,
-      [name]: checked 
-        ? [...prevFilters[name], value] 
-        : prevFilters[name].filter((item) => item !== value),
+      [name]: checked
+        ? [...prevFilters[name], value]
+        : prevFilters[name].filter(item => item !== value),
     }));
   };
 
@@ -138,7 +69,6 @@ const ProductListingPage = () => {
       options: [
         { text: 'Adidas', value: 'Adidas', type: 'checkbox' },
         { text: 'Balenciaga', value: 'Balenciaga', type: 'checkbox' },
-        { text: 'K-Swiss', value: 'K-Swiss', type: 'checkbox' },
         { text: 'Nike', value: 'Nike', type: 'checkbox' },
         { text: 'Puma', value: 'Puma', type: 'checkbox' },
       ],
@@ -170,34 +100,14 @@ const ProductListingPage = () => {
         { text: 'Usado', value: 'Usado', type: 'radio' },
       ],
     },
-  ]
-
-  const sortedProducts = [...productsData].sort((a, b) => {
-    if (sortOrder === 'lowest') {
-      return a.price - b.price;
-    }
-    if (sortOrder === 'highest') {
-      return b.price - a.price;
-    }
-    return 0;
-  })
-
-  const filteredProducts = sortedProducts.filter((product) => {
-    return Object.keys(filters).every((filterKey) => {
-      if (filters[filterKey].length === 0) {
-        return true;
-      }
-
-      return filters[filterKey].includes(product[filterKey]);
-    });
-  });
+  ];
 
   return (
     <Layout> 
       <div className='container mx-auto c-max-width p-5'>
         <div className='flex items-center justify-between'>
           <div htmlFor="sort" className='block text-dark-gray-2 text-sm my-5'>
-            <span className='font-bold'>Resultados para #pesquisa</span> - #numero produtos
+            <span className='font-bold'>Resultados para "{searchTerm}"</span> - {sortedProducts.length} produtos
           </div>
           <div className='flex items-center text-sm'>
             <label htmlFor="sort" className='font-bold pr-2'>Ordenar por:</label>
@@ -206,6 +116,7 @@ const ProductListingPage = () => {
               value={sortOrder}
               onChange={handleSortChange}
               className='h-15 p-2 rounded-md text-dark-gray-2 custom-select'
+              aria-label="Ordenar por"
               >
               <option value="">mais relevantes</option>
               <option value="lowest">Menor preço</option>
@@ -221,13 +132,13 @@ const ProductListingPage = () => {
               onChange={handleFilterChange}
               />
           </div>
-          <div className='pt-5 px-4 md:px-0'>
-            <ProductListing products={filteredProducts} columns={3}/>
+          <div className='pt-5 md:px-0'>
+            <ProductListing products={sortedProducts} columns={3}/>
           </div>
         </div>
       </div>
     </Layout>
-  )
+  );
 };
 
 export default ProductListingPage;

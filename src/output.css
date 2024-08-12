@@ -676,6 +676,10 @@ video {
   top: 100%;
 }
 
+.right-\[100px\] {
+  right: 100px;
+}
+
 .z-20 {
   z-index: 20;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Card from '../assets/card-icon.svg';
 import MenuIcon from '../assets/menu-icon.svg';
@@ -12,9 +12,9 @@ const Header = () => {
   const [isCartPopupOpen, setIsCartPopupOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchInputVisible, setIsSearchInputVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(''); // State for search term
   const navigate = useNavigate();
   const location = useLocation();
-  const searchInputRef = useRef(null);
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
@@ -22,19 +22,6 @@ const Header = () => {
       document.body.style.overflow = 'auto';
     };
   }, [isMenuOpen]);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (searchInputRef.current && !searchInputRef.current.contains(event.target)) {
-        setIsSearchInputVisible(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   const handleLoginClick = useCallback(() => {
     navigate('/login');
@@ -51,6 +38,20 @@ const Header = () => {
 
   const toggleSearchInput = () => {
     setIsSearchInputVisible(prev => !prev);
+  };
+
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      navigate('/products', { state: { searchTerm } });
+      setSearchTerm(''); // Limpa o campo de pesquisa após a busca
+    }
+    setIsSearchInputVisible(false);
+  };
+
+  const handleSearchKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
   };
 
   const getLinkClass = (path) => {
@@ -74,7 +75,13 @@ const Header = () => {
           )}
           <div className="flex justify-center lg:justify-start">
             <Logo isLoginPage={isLoginPage} />
-            {!isLoginPage && <SearchBar />}
+            {!isLoginPage && (
+              <SearchBar 
+                searchTerm={searchTerm} 
+                onSearchTermChange={setSearchTerm} 
+                onSearch={handleSearch} 
+              />
+            )}
           </div>
           {!isLoginPage && (
             <div className="flex items-center">
@@ -119,16 +126,20 @@ const Header = () => {
       <MenuSmallNav isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       {isSearchInputVisible && (
         <div className='container bg-white px-4 pb-2 mx-auto mt-2 relative'>
-          <div className="relative" ref={searchInputRef}>
+          <div className="relative">
             <input
               type="text"
               placeholder="Pesquisar produto"
+              value={searchTerm} // Bind searchTerm to the input
+              onChange={(e) => setSearchTerm(e.target.value)} // Update searchTerm on input change
+              onKeyPress={handleSearchKeyPress} // Trigger search on Enter key press
               className='bg-light-gray-3 flex pl-4 py-2 w-full md:w-[300px] rounded-lg border-none focus:outline-none'
             />
             <img
               src={SearchIcon}
               alt="Search Icon"
-              className="absolute right-3 top-1/2 transform -translate-y-1/2"
+              onClick={handleSearch} // Trigger search on click
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
             />
           </div>
         </div>
