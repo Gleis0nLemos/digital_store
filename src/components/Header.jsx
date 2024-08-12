@@ -27,6 +27,10 @@ const Header = () => {
     navigate('/login');
   }, [navigate]);
 
+  const handleRegistrationClick = useCallback(() => {
+    navigate('/registration');
+  }, [navigate]);
+
   const toggleCartPopup = useCallback(() => {
     setIsCartPopupOpen((prev) => !prev);
   }, []);
@@ -86,7 +90,7 @@ const Header = () => {
           {!isLoginPage && (
             <div className="flex items-center">
               <div className="hidden gap-6 items-center lg:pr-8 xl:pr-12 lg:flex">
-                <a href="#" onClick={handleLoginClick} className='underline-offset-4 underline'>Cadastrar-se</a>
+                <a href="" onClick={handleRegistrationClick} className='underline-offset-4 underline'>Cadastrar-se</a>
                 <button
                   className='bg-primary text-white px-8 py-2 rounded-lg font-bold hover:bg-tertiary'
                   onClick={handleLoginClick}
