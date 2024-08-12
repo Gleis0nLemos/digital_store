@@ -35,7 +35,7 @@ const Gallery = ({ className, width, height, radius, showThumbs, images }) => {
           <img 
             src={images[currentIndex].src} 
             alt={`image ${currentIndex + 1}`} 
-            className="w-full h-full px-24 pt-12"
+            className="w-full h-full px-12 py-12 md:px-24 md:pt-12"
             style={{ borderRadius: radius }}
             />
         </div>

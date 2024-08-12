@@ -106,19 +106,19 @@ const HomePage = () => {
             <div className='flex items-center justify-center'>
               <div className='w-full overflow-x-auto scrolling-container'>
                 <div className='flex items-center gap-8 md:gap-12 md:justify-center pl-2 md:pl-0 pr-2 md:pr-0 min-w-max'>
-                  <div className="w-24 h-24 bg-white items-center justify-center flex rounded-full flex-shrink-0">
+                  <div className="w-24 h-24 bg-white items-center justify-center flex rounded-full flex-shrink-0 hover:bg-light-gray-2">
                     <img src={Tshirt} alt="" className='w-auto h-auto' />    
                   </div>
-                  <div className="w-24 h-24 bg-white items-center justify-center flex rounded-full flex-shrink-0">
+                  <div className="w-24 h-24 bg-white items-center justify-center flex rounded-full flex-shrink-0 hover:bg-light-gray-2">
                     <img src={Pant} alt="" className='w-auto h-auto' />    
                   </div>
-                  <div className="w-24 h-24 bg-white items-center justify-center flex rounded-full flex-shrink-0">
+                  <div className="w-24 h-24 bg-white items-center justify-center flex rounded-full flex-shrink-0 hover:bg-light-gray-2">
                     <img src={Hat} alt="" className='w-auto h-auto' />    
                   </div>
-                  <div className="w-24 h-24 bg-white items-center justify-center flex rounded-full flex-shrink-0">
+                  <div className="w-24 h-24 bg-white items-center justify-center flex rounded-full flex-shrink-0 hover:bg-light-gray-2">
                     <img src={Headphone} alt="" className='w-auto h-auto' />    
                   </div>
-                  <div className="w-24 h-24 bg-white items-center justify-center flex rounded-full flex-shrink-0">
+                  <div className="w-24 h-24 bg-white items-center justify-center flex rounded-full flex-shrink-0 hover:bg-light-gray-2">
                     <img src={Shoe} alt="" className='w-auto h-auto' />    
                   </div>
                 </div>
@@ -126,8 +126,8 @@ const HomePage = () => {
             </div>
           </Section>
 
-          <Section title="Produtos em destaque" titleAlign="left">
-            <ProductListing products={featureProducts} /> {/* Passa a lista de produtos para ProductListing */}
+          <Section title="Produtos em destaque" titleAlign="left" link={{ text: 'Ver todos', href: '/products' }}>
+            <ProductListing products={featureProducts} /> 
           </Section>
         </div>
       </div>
