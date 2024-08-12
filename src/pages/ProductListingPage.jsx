@@ -24,6 +24,23 @@ const ProductListingPage = () => {
     }
   }, [location.state]);
 
+  useEffect(() => {
+    const body = document.body;
+    if (isSidebarOpen) {
+      body.classList.add('no-scroll');
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      body.style.marginRight = `${scrollbarWidth}px`;
+    } else {
+      body.classList.remove('no-scroll');
+      body.style.marginRight = '0';
+    }
+
+    return () => {
+      body.classList.remove('no-scroll');
+      body.style.marginRight = '0';
+    };
+  }, [isSidebarOpen]);
+
   const filteredProducts = useMemo(() => {
     return ProductsData.filter(product => {
       const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -134,8 +151,13 @@ const ProductListingPage = () => {
           </div>
         </div>
 
+        {/* Sobreposição para o fundo */}
+        {isSidebarOpen && (
+          <div className='fixed top-[91px] inset-0 bg-black opacity-50 z-40' onClick={toggleSidebar}></div>
+        )}
+
         {/* Menu lateral para filtros */}
-        <div className={`fixed top-0 left-0 h-full bg-white shadow-lg transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 z-50 md:w-3/5 lg:w-4/5`}>
+        <div className={`fixed top-[91px] left-0 h-full bg-white shadow-lg transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 z-50 md:w-3/5 lg:w-4/5 filter-menu`}>
           <div className='p-5'>
             <button onClick={toggleSidebar} className='text-gray-500'>
               <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">

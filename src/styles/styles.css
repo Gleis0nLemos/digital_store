@@ -86,3 +86,14 @@ body {
   background-color: transparent;
   border: none;
 }
+
+/* Desativar a rolagem do corpo e esconder a barra de rolagem */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Estilizar o menu de filtros para ter rolagem interna se necessário */
+.filter-menu {
+  overflow-y: auto;
+}
+
