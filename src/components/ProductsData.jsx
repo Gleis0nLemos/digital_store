@@ -14,6 +14,7 @@ const ProductsData = [
     priceDiscount: 240,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
     gender: 'Masculino',
+    state: 'Novo',
     image: nikeRed,
     images: [
       { src: nikeRed, bgColor: '#E2E3FF' },
@@ -37,6 +38,7 @@ const ProductsData = [
     priceDiscount: 210,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
     gender: 'Feminino',
+    state: 'Novo',
     image: ShoesProduct,
     images: [
       { src: ShoesProduct, bgColor: '#E2E3FF' },
@@ -60,6 +62,7 @@ const ProductsData = [
     priceDiscount: 200,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
     gender: 'Feminino',
+    state: 'Usado',
     image: ShoesProduct,
     images: [
       { src: ShoesProduct, bgColor: '#E2E3FF' },
@@ -83,6 +86,7 @@ const ProductsData = [
     priceDiscount: 110,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
     gender: 'Masculino',
+    state: 'Usado',
     image: ShoesProduct,
     images: [
       { src: ShoesProduct, bgColor: '#E2E3FF' },
@@ -106,6 +110,7 @@ const ProductsData = [
     priceDiscount: 210,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
     gender: 'Masculino',
+    state: 'Novo',
     image: ShoesProduct,
     images: [
       { src: ShoesProduct, bgColor: '#E2E3FF' },
@@ -129,6 +134,7 @@ const ProductsData = [
     priceDiscount: 210,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
     gender: 'Feminino',
+    state: 'Usado',
     image: ShoesProduct,
     images: [
       { src: ShoesProduct, bgColor: '#E2E3FF' },
@@ -152,6 +158,7 @@ const ProductsData = [
     priceDiscount: 210,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
     gender: 'Masculino',
+    state: 'Usado',
     image: ShoesProduct,
     images: [
       { src: ShoesProduct, bgColor: '#E2E3FF' },
@@ -175,6 +182,7 @@ const ProductsData = [
     priceDiscount: 210,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
     gender: 'Feminino',
+    state: 'Novo',
     image: ShoesProduct,
     images: [
       { src: ShoesProduct, bgColor: '#E2E3FF' },
@@ -198,6 +206,7 @@ const ProductsData = [
     priceDiscount: 210,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
     gender: 'Feminino',
+    state: 'Novo',
     image: ShoesProduct,
     images: [
       { src: ShoesProduct, bgColor: '#E2E3FF' },

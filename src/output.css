@@ -817,6 +817,10 @@ video {
   margin-right: 2rem;
 }
 
+.mt-0 {
+  margin-top: 0px;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -1048,6 +1052,10 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.resize {
+  resize: both;
 }
 
 .grid-cols-2 {
@@ -1468,6 +1476,10 @@ video {
   padding-top: 2rem;
 }
 
+.pt-0 {
+  padding-top: 0px;
+}
+
 .text-left {
   text-align: left;
 }
@@ -1794,6 +1806,10 @@ video {
     margin-left: 1.5rem;
   }
 
+  .md\:mr-0 {
+    margin-right: 0px;
+  }
+
   .md\:mr-16 {
     margin-right: 4rem;
   }
@@ -1808,6 +1824,10 @@ video {
 
   .md\:mt-10 {
     margin-top: 2.5rem;
+  }
+
+  .md\:mt-12 {
+    margin-top: 3rem;
   }
 
   .md\:mt-20 {
@@ -1826,6 +1846,22 @@ video {
     margin-top: 20px;
   }
 
+  .md\:mt-2 {
+    margin-top: 0.5rem;
+  }
+
+  .md\:mt-8 {
+    margin-top: 2rem;
+  }
+
+  .md\:mt-6 {
+    margin-top: 1.5rem;
+  }
+
+  .md\:mr-8 {
+    margin-right: 2rem;
+  }
+
   .md\:h-28 {
     height: 7rem;
   }
@@ -1842,8 +1878,16 @@ video {
     width: 25%;
   }
 
+  .md\:w-1\/5 {
+    width: 20%;
+  }
+
   .md\:w-2\/3 {
     width: 66.666667%;
+  }
+
+  .md\:w-2\/5 {
+    width: 40%;
   }
 
   .md\:w-3\/5 {
@@ -1862,6 +1906,10 @@ video {
     width: 300px;
   }
 
+  .md\:w-\[367px\] {
+    width: 367px;
+  }
+
   .md\:w-\[calc\(100\%\+4rem\)\] {
     width: calc(100% + 4rem);
   }
@@ -1872,6 +1920,10 @@ video {
 
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:w-2\/6 {
+    width: 33.333333%;
   }
 
   .md\:max-w-60 {
@@ -1920,6 +1972,10 @@ video {
     margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
+  .md\:p-0 {
+    padding: 0px;
+  }
+
   .md\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
@@ -1955,6 +2011,11 @@ video {
     padding-bottom: 1rem;
   }
 
+  .md\:py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
   .md\:pb-12 {
     padding-bottom: 3rem;
   }
@@ -1967,6 +2028,10 @@ video {
     padding-left: 20px;
   }
 
+  .md\:pl-6 {
+    padding-left: 1.5rem;
+  }
+
   .md\:pr-0 {
     padding-right: 0px;
   }
@@ -1977,6 +2042,10 @@ video {
 
   .md\:pt-12 {
     padding-top: 3rem;
+  }
+
+  .md\:pt-6 {
+    padding-top: 1.5rem;
   }
 
   .md\:text-start {

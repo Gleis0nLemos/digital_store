@@ -12,7 +12,7 @@ const Header = () => {
   const [isCartPopupOpen, setIsCartPopupOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchInputVisible, setIsSearchInputVisible] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(''); // State for search term
+  const [searchTerm, setSearchTerm] = useState(''); 
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -47,7 +47,7 @@ const Header = () => {
   const handleSearch = () => {
     if (searchTerm.trim()) {
       navigate('/products', { state: { searchTerm } });
-      setSearchTerm(''); // Limpa o campo de pesquisa após a busca
+      setSearchTerm(''); 
     }
     setIsSearchInputVisible(false);
   };

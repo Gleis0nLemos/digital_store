@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 const MenuSmallNav = ({ isOpen, onClose }) => {
@@ -14,6 +14,24 @@ const MenuSmallNav = ({ isOpen, onClose }) => {
     onClose();
   };
 
+  useEffect(() => {
+    // Função para bloquear o scroll do body
+    const toggleBodyScroll = () => {
+      if (isOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    };
+
+    toggleBodyScroll();
+
+    // Cleanup function para quando o componente desmontar
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   return (
     <>
       {isOpen && (
@@ -27,8 +45,8 @@ const MenuSmallNav = ({ isOpen, onClose }) => {
         className={`fixed top-[91px] left-0 w-80 bg-white shadow-lg transform transition-transform duration-300 ${
           isOpen ? 'translate-x-0 z-30' : '-translate-x-full'
         }`}
-        onClick={(e) => e.stopPropagation()} 
-        style={{ height: 'calc(100vh - 60px)' }} 
+        onClick={(e) => e.stopPropagation()}
+        style={{ height: 'calc(100vh - 60px)', overflowY: 'auto' }} // Habilita scroll no menu
       >
         <button
           onClick={onClose}

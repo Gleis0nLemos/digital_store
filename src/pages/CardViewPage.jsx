@@ -1,12 +1,11 @@
 import { useState } from "react";
 import Layout from "./Layout";
-import ProductsData from "../components/ProductsData"; // Ajuste o caminho conforme necessário
+import ProductsData from "../components/ProductsData"; 
 import Section from "../components/Section";
 import ProductListing from "../components/ProductListing";
-import ShoesProduct from "../assets/products/shoes-product.svg"
 
 const CardViewPage = () => {
-  const product = ProductsData[0]; // Substitua isso pelo método adequado para obter o produto correto
+  const product = ProductsData[0]; 
 
   const [quantity, setQuantity] = useState(1);
   const [discountCode, setDiscountCode] = useState("");
@@ -26,50 +25,18 @@ const CardViewPage = () => {
   };
 
   const handleApplyDiscount = () => {
-    console.log("Aplicar desconto com código:", discountCode);
-    // Lógica para aplicar o desconto
+    //console.log("Aplicar desconto com código:", discountCode);
   };
 
   const handleCalculateFreight = () => {
-    console.log("Calcular frete com CEP:", postalCode);
-    // Lógica para calcular o frete
+    // console.log("Calcular frete com CEP:", postalCode);
   };
 
-  const frete = 15.0; // Exemplo de valor fixo de frete
+  const frete = 15.0;
   const desconto = totalOriginal - total;
   const subtotal = total + frete;
 
-  const recommendedProducts = [
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-  ]
-
+  const recommendedProducts = ProductsData.slice(0, 4);
   return (
     <Layout>
       <div className="container c-max-width mx-auto p-5 flex space-x-4">
@@ -86,7 +53,6 @@ const CardViewPage = () => {
           </div>
           <hr className="border-2 border-light-gray-3 my-4" />
           <div className="flex justify-between">
-            {/* Informações do Produto */}
             <div className="flex space-x-4 w-[367px]">
               <img
                 src={product.images[0].src}
@@ -142,7 +108,7 @@ const CardViewPage = () => {
             </div>
           </div>
           <hr className="border-2 border-light-gray-3 my-4" />
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 order-1 md:order-2">
             <div className="w-1/2">
               <h2 className="text-sm text-dark-gray-2 font-bold mb-4">Cupom de desconto</h2>
               <div className="flex space-x-2">
@@ -180,12 +146,9 @@ const CardViewPage = () => {
               </div>
             </div>
           </div>
-
-
         </div>
 
-        {/* Resumo */}
-        <div className="bg-white w-1/4 p-6 self-start">
+        <div className="bg-white w-1/4 p-6 self-start order-2 md:order-1">
           <h2 className="text-sm text-dark-gray-2 font-bold mb-6">RESUMO</h2>
           <hr className="border-2 border-light-gray-3 my-4" />
           <div className="flex justify-between mb-6">

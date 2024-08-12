@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import NikeRed from '../assets/productview/nike-red-shoe.svg';
 
 const CartPopup = ({ onClose, onViewCart }) => {
   const cartRef = useRef(null);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -11,9 +12,21 @@ const CartPopup = ({ onClose, onViewCart }) => {
       }
     };
 
+    const handleResize = () => {
+      // Defina a largura do breakpoint `md` (geralmente 768px)
+      const mdBreakpoint = 768;
+      setIsButtonDisabled(window.innerWidth < mdBreakpoint);
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener('resize', handleResize);
+
+    // Executar uma vez para definir o estado inicial
+    handleResize();
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('resize', handleResize);
     };
   }, [onClose]);
 
@@ -52,7 +65,11 @@ const CartPopup = ({ onClose, onViewCart }) => {
       </div>
       <div className="flex justify-between items-center">
         <button className="text-sm text-dark-gray-2 underline">Esvaziar</button>
-        <button onClick={onViewCart} className="bg-primary text-sm text-white px-4 py-2 rounded-lg">
+        <button 
+          onClick={onViewCart} 
+          className="bg-primary text-sm text-white px-4 py-2 rounded-lg"
+          disabled={isButtonDisabled}
+        >
           Ver Carrinho
         </button>
       </div>
