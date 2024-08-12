@@ -156,12 +156,10 @@ const ProductListingPage = () => {
           </div>
         </div>
 
-        {/* Sobreposição para o fundo */}
         {isSidebarOpen && (
           <div className='fixed top-[91px] inset-0 bg-black opacity-50 z-40' onClick={toggleSidebar}></div>
         )}
 
-        {/* Menu lateral para filtros */}
         <div className={`fixed top-[91px] left-0 h-full bg-white shadow-lg transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 z-50 md:w-3/5 lg:w-4/5 filter-menu`}>
           <div className='p-5'>
             <button onClick={toggleSidebar} className='text-gray-500'>

@@ -1,9 +1,6 @@
 import Layout from '../pages/Layout';
 import Section from '../components/Section';
 import Gallery from '../components/Gallery';
-import ProductCard from '../components/ProductCard';
-import CollectionProduct from '../assets/products/collection-product.svg';
-import ShoesProduct from '../assets/products/shoes-product.svg';
 import ProductListing from '../components/ProductListing';
 import Tshirt from '../assets/collections/t-shirts.svg';
 import Shoe from '../assets/collections/shoes.svg';
@@ -12,13 +9,12 @@ import Headphone from '../assets/collections/headphones.svg';
 import Hat from '../assets/collections/hats.svg';
 import stokeShoes from '../assets/stoke-apresentation/nike-red.svg';
 import CircleDashed from '../assets/circle-detail.svg';
-
-// Collections section
+import productsData from '../components/ProductsData'; 
 import Shirt from '../assets/collection-section/t-shirt.svg';
 import Shoes from '../assets/collection-section/shoes.svg';
 import Headset from '../assets/collection-section/headset.svg';
 
-import productsData from '../components/ProductsData'; // Adicione esta linha;
+
 
 const HomePage = () => {
   const images = [
@@ -28,8 +24,7 @@ const HomePage = () => {
     { src: stokeShoes },
   ];
 
-  // Supondo que productsData é um array de produtos
-  const featureProducts = productsData.slice(0, 8); // Substitua featureProducts com productsData
+  const featureProducts = productsData.slice(0, 8); 
 
   return (
     <Layout>

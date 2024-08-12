@@ -1,14 +1,12 @@
 import { useParams } from "react-router-dom";
 import Layout from "./Layout";
-import ProductCard from "../components/ProductCard";
 import Gallery from "../components/Gallery2";
 import BuyBox from "../components/BuyBox";
 import productsData from "../components/ProductsData";
 import ProductOptions from "../components/ProductOptions";
-import ShoesProduct from "../assets/products/shoes-product.svg";
 import Section from "../components/Section";
 import ProductListing from "../components/ProductListing";
-import { useEffect } from "react"; // Importar useEffect
+import { useEffect } from "react";
 
 const ProductViewPage = () => {
   const { id } = useParams();
@@ -16,50 +14,20 @@ const ProductViewPage = () => {
   const product = productsData.find((p) => p.id === id);
   
   useEffect(() => {
-    window.scrollTo(0, 0); // Rola a página para o topo
-  }, []); // Array de dependências vazio para garantir que isso execute apenas uma vez
+    window.scrollTo(0, 0); 
+  }, []); 
 
   if (!product) {
     return <p>Produto não encontrado</p>;
   }
 
-  const recommendedProducts = [
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-  ];
+  const recommendedProducts = productsData.slice(0, 4);
 
   return (
     <Layout>
       <div className="c-max-width container mx-auto p-5">
         <p className="text-sm text-dark-gray-3 pb-8">Home / Produtos / {product.category} / {product.brand} / {product.name}</p>
         <div className="flex flex-col lg:flex-row">
-          {/* img */}
           <div className="w-full lg:w-3/5 mb-4 lg:mb-0">
             <Gallery
               images={product.images}
@@ -70,7 +38,6 @@ const ProductViewPage = () => {
             />
           </div>
 
-          {/* info */}
           <div className="w-full md:ml-3 lg:w-2/5 lg:pl-8">
             <BuyBox
               name={product.name}
@@ -105,7 +72,7 @@ const ProductViewPage = () => {
           titleAlign="left"
           link={{ text: 'Ver todos', href: '/products' }}
         >
-          <ProductListing key={product.id} products={recommendedProducts} />
+          <ProductListing products={recommendedProducts} />
         </Section>
       </div>
     </Layout>

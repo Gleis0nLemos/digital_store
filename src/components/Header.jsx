@@ -134,15 +134,15 @@ const Header = () => {
             <input
               type="text"
               placeholder="Pesquisar produto"
-              value={searchTerm} // Bind searchTerm to the input
-              onChange={(e) => setSearchTerm(e.target.value)} // Update searchTerm on input change
-              onKeyPress={handleSearchKeyPress} // Trigger search on Enter key press
+              value={searchTerm} 
+              onChange={(e) => setSearchTerm(e.target.value)} 
+              onKeyPress={handleSearchKeyPress} 
               className='bg-light-gray-3 flex pl-4 py-2 w-full md:w-[300px] rounded-lg border-none focus:outline-none'
             />
             <img
               src={SearchIcon}
               alt="Search Icon"
-              onClick={handleSearch} // Trigger search on click
+              onClick={handleSearch} 
               className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
             />
           </div>

@@ -1,7 +1,4 @@
-import ProductOptions from "./ProductOptions";
 import StarWhite from '../assets/productview/star-white.svg';
-import StarYellow from '../assets/productview/star-yellow.svg';
-import Star from '../assets/productview/star.svg'
 import PropTypes from 'prop-types';
 import GenerateStars from "./generateStars";
 

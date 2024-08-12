@@ -16,7 +16,6 @@ const MenuSmallNav = ({ isOpen, onClose }) => {
 
   return (
     <>
-      {/* Filtro de fundo */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50 z-20"
@@ -24,13 +23,12 @@ const MenuSmallNav = ({ isOpen, onClose }) => {
           onClick={onClose}
         />
       )}
-      {/* Menu lateral */}
       <div
         className={`fixed top-[91px] left-0 w-80 bg-white shadow-lg transform transition-transform duration-300 ${
           isOpen ? 'translate-x-0 z-30' : '-translate-x-full'
         }`}
-        onClick={(e) => e.stopPropagation()} // Impede o clique no menu de propagar
-        style={{ height: 'calc(100vh - 60px)' }} // Ajuste a altura conforme necessário
+        onClick={(e) => e.stopPropagation()} 
+        style={{ height: 'calc(100vh - 60px)' }} 
       >
         <button
           onClick={onClose}
