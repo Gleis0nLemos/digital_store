@@ -7,8 +7,8 @@ import GenerateStars from "./generateStars";
 
 const BuyBox = ({ name, category, brand, reference, stars, rating, price, priceDiscount, description, children }) => {
 
-  return (  
-    <div className="rounded-lg shadow-sm">
+  return (
+    <div className="rounded-lg shadow-sm py-12 md:py-0">
       <h1 className="text-4xl text-dark-gray mb-2 font-extrabold">{name}</h1>
       <div className="flex gap-1 mb-2">
         <p className="text-xs text-dark-gray-3">{category} |</p>
@@ -19,7 +19,7 @@ const BuyBox = ({ name, category, brand, reference, stars, rating, price, priceD
 
       <div className="flex items-center gap-1 mb-6">
         <div className="mr-2">
-          <GenerateStars rating={stars} />  
+          <GenerateStars rating={stars} />
         </div>
         <span className="text-sm font-bold flex items-center text-white px-2 py-1 rounded-4 bg-warning mr-2">
           {stars} <img src={StarWhite} alt="Star" className="ml-1 pb-0.5" />
@@ -48,17 +48,18 @@ const BuyBox = ({ name, category, brand, reference, stars, rating, price, priceD
           </>
         )}
       </div>
-      
+
       <div className="my-6">
         <h2 className="text-sm text-light-gray font-bold pb-1">Descrição do produto</h2>
         <p className="text-sm text-dark-gray-2 mb-4">{description}</p>
       </div>
 
       <div className="mb-5">{children}</div>
-    
-      <button className="bg-warning text-white py-2 px-16 rounded-md hover:bg-warning_2">
+
+      <button className="bg-warning text-white py-2 px-4 md:px-16 rounded-md hover:bg-warning_2 w-full sm:w-auto">
         COMPRAR
       </button>
+
     </div>
   );
 };

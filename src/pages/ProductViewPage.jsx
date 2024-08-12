@@ -5,19 +5,23 @@ import Gallery from "../components/Gallery2";
 import BuyBox from "../components/BuyBox";
 import productsData from "../components/ProductsData";
 import ProductOptions from "../components/ProductOptions";
-import ShoesProduct from "../assets/products/shoes-product.svg"
+import ShoesProduct from "../assets/products/shoes-product.svg";
 import Section from "../components/Section";
 import ProductListing from "../components/ProductListing";
+import { useEffect } from "react"; // Importar useEffect
 
 const ProductViewPage = () => {
   const { id } = useParams();
+  
   const product = productsData.find((p) => p.id === id);
+  
+  useEffect(() => {
+    window.scrollTo(0, 0); // Rola a página para o topo
+  }, []); // Array de dependências vazio para garantir que isso execute apenas uma vez
 
   if (!product) {
     return <p>Produto não encontrado</p>;
   }
-
-  // const relatedProducts = productsData.filter((p) => p.category === product.category && p.id !== id);
 
   const recommendedProducts = [
     {
@@ -48,15 +52,15 @@ const ProductViewPage = () => {
       price: '$100.00',
       priceDiscount: '$80.00',
     },
-  ]
+  ];
 
   return (
     <Layout>
       <div className="c-max-width container mx-auto p-5">
-        <p className="text-sm text-dark-gray-3 pb-8">Home / Produtos / #pesquisa / {product.brand} / {product.name}</p>
+        <p className="text-sm text-dark-gray-3 pb-8">Home / Produtos / {product.category} / {product.brand} / {product.name}</p>
         <div className="flex flex-col lg:flex-row">
           {/* img */}
-          <div className="w-full lg:w-3/5 mb-4 lb:mb-0">
+          <div className="w-full lg:w-3/5 mb-4 lg:mb-0">
             <Gallery
               images={product.images}
               showThumbs
@@ -66,9 +70,8 @@ const ProductViewPage = () => {
             />
           </div>
 
-
           {/* info */}
-          <div className="w-full ml-3 lg:w-2/5 lg:pl-8">
+          <div className="w-full md:ml-3 lg:w-2/5 lg:pl-8">
             <BuyBox
               name={product.name}
               category={product.category}
@@ -102,7 +105,7 @@ const ProductViewPage = () => {
           titleAlign="left"
           link={{ text: 'Ver todos', href: '/products' }}
         >
-          <ProductListing products={recommendedProducts} />
+          <ProductListing key={product.id} products={recommendedProducts} />
         </Section>
       </div>
     </Layout>

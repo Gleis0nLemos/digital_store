@@ -1,110 +1,96 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Logo from '../assets/logo.svg';
-import Logo2 from '../assets/logo_2.svg';
-import Search from '../assets/search-icon.svg';
+import React, { useState, useCallback, useEffect } from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Card from '../assets/card-icon.svg';
 import MenuIcon from '../assets/menu-icon.svg';
-import NikeRed from '../assets/productview/nike-red-shoe.svg'; // Importando imagem dos produtos
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import SearchIcon from '../assets/search-icon.svg';
+import CartPopUp from './CartPopUp';
+import SearchBar from './SearchBar';
+import Logo from './Logo';
+import MenuSmallNav from './MenuSmallNav';
 
 const Header = () => {
-  const [isCartPopupOpen, setIsCartPopupOpen] = useState(false); // Estado para controlar o pop-up do carrinho
+  const [isCartPopupOpen, setIsCartPopupOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchInputVisible, setIsSearchInputVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(''); // State for search term
   const navigate = useNavigate();
   const location = useLocation();
-  const cartRef = useRef(null);
-
-  const handleLoginClick = () => {
-    navigate('/login');
-  };
-
-  const toggleCartPopup = () => {
-    setIsCartPopupOpen((prev) => !prev);
-  };
-
-  const handleViewCart = () => {
-    setIsCartPopupOpen(false);
-    navigate('/products/card');
-  };
-
-  const handleClickOutside = (event) => {
-    if (cartRef.current && !cartRef.current.contains(event.target)) {
-      setIsCartPopupOpen(false);
-    }
-  };
 
   useEffect(() => {
-    if (isCartPopupOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'auto';
     };
-  }, [isCartPopupOpen]);
+  }, [isMenuOpen]);
+
+  const handleLoginClick = useCallback(() => {
+    navigate('/login');
+  }, [navigate]);
+
+  const handleRegistrationClick = useCallback(() => {
+    navigate('/registration');
+  }, [navigate]);
+
+  const toggleCartPopup = useCallback(() => {
+    setIsCartPopupOpen((prev) => !prev);
+  }, []);
+
+  const handleViewCart = useCallback(() => {
+    setIsCartPopupOpen(false);
+    navigate('/products/card');
+  }, [navigate]);
+
+  const toggleSearchInput = () => {
+    setIsSearchInputVisible(prev => !prev);
+  };
+
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      navigate('/products', { state: { searchTerm } });
+      setSearchTerm(''); // Limpa o campo de pesquisa após a busca
+    }
+    setIsSearchInputVisible(false);
+  };
+
+  const handleSearchKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
 
   const getLinkClass = (path) => {
-    if (location.pathname === path || (path === '/products' && location.pathname.startsWith('/products'))) {
-      return 'text-primary underline underline-offset-4 font-bold';
-    } else {
-      return 'text-base';
-    }
+    return location.pathname === path || (path === '/products' && location.pathname.startsWith('/products'))
+      ? 'text-primary underline underline-offset-4 font-bold'
+      : 'text-base';
   };
 
   const isLoginPage = location.pathname === '/login' || location.pathname === '/login/register';
 
-  const recommendedProducts = [
-    {
-      image: NikeRed,
-      category: 'Tênis',
-      name: 'Tênis Nike Revolution 6 Next Nature Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: NikeRed,
-      category: 'Tênis',
-      name: 'Tênis Nike Revolution 6 Next Nature Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-  ];
-
   return (
-    <header className='text-dark-gray-2 bg-white'>
-      <div className="container mx-auto flex flex-col p-5 pt-10 c-max-width">
+    <header className='text-dark-gray-2 bg-white z-50'>
+      <div className='container mx-auto flex flex-col p-5 pt-10 c-max-width'>
         <div className="flex items-center justify-between">
           {!isLoginPage && (
             <div className='flex lg:hidden'>
-              <button>
+              <button onClick={() => setIsMenuOpen(true)}>
                 <img src={MenuIcon} alt="Menu Icon" />
               </button>
             </div>
           )}
           <div className="flex justify-center lg:justify-start">
-            <NavLink to="/"><img src={Logo} alt="" className="block mx-auto pl-4 lg:hidden" /></NavLink>
-            <NavLink to="/"><img src={Logo2} alt="" className='hidden lg:block' /></NavLink>
-
+            <Logo isLoginPage={isLoginPage} />
             {!isLoginPage && (
-              <div className="hidden relative items-center ml-6 lg:flex">
-                <input
-                  type="text"
-                  placeholder='Pesquisar produto'
-                  className='bg-light-gray-3 flex md:hidden lg:flex pl-6 py-4 w-[400px] lg:w-[410px] xl:w-[559px] rounded-lg border-none focus:outline-none'
-                />
-                <div className='absolute right-4 items-center flex'>
-                  <button>
-                    <img src={Search} alt="Search icon" />
-                  </button>
-                </div>
-              </div>
+              <SearchBar 
+                searchTerm={searchTerm} 
+                onSearchTermChange={setSearchTerm} 
+                onSearch={handleSearch} 
+              />
             )}
           </div>
-
           {!isLoginPage && (
             <div className="flex items-center">
               <div className="hidden gap-6 items-center lg:pr-8 xl:pr-12 lg:flex">
-                <a href="#" onClick={handleLoginClick} className='underline-offset-4 underline'>Cadastrar-se</a>
+                <a href="" onClick={handleRegistrationClick} className='underline-offset-4 underline'>Cadastrar-se</a>
                 <button
                   className='bg-primary text-white px-8 py-2 rounded-lg font-bold hover:bg-tertiary'
                   onClick={handleLoginClick}
@@ -112,8 +98,8 @@ const Header = () => {
                   Entrar
                 </button>
               </div>
-              <button>
-                <img src={Search} alt="Search Icon" className='lg:hidden mr-2 mt-0.5' />
+              <button onClick={toggleSearchInput} className={`${isSearchInputVisible ? 'text-primary' : ''}`}>
+                <img src={SearchIcon} alt="Search Icon" className='lg:hidden mr-2 pb-1' />
               </button>
               <div className='relative'>
                 <button onClick={toggleCartPopup}>
@@ -121,41 +107,15 @@ const Header = () => {
                 </button>
                 <div className="absolute w-[17px] h-[17px] bg-primary text-white text-[10px] rounded-full flex items-center justify-center top-0 right-0 transform translate-x-1/2 -translate-y-1/2 mt-1">1</div>
                 {isCartPopupOpen && (
-                  <div ref={cartRef} className="absolute top-full mt-2 right-0 bg-white w-72 p-6 rounded-lg shadow-lg z-50">
-                    <h2 className="font-bold mb-4">Meu Carrinho</h2>
-                    <hr className="border border-light-gray-2 mb-4" />
-                    <div className="mb-4">
-                      {recommendedProducts.map((product, index) => (
-                        <div key={index} className="flex items-center mb-4">
-                          <img src={product.image} alt={product.name} className="w-16 h-16 px-1 bg-[#E2E3FF] mr-4" />
-                          <div>
-                            <p className="text-sm font-bold">{product.name}</p>
-                            <div className='flex gap-4 pt-1 items-center'>
-                              <p className="text-dark-gray font-bold">{product.priceDiscount}</p>
-                              <p className="text-xs font-bold text-light-gray line-through">{product.price}</p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <hr className="border border-light-gray-2 mb-4" />
-                    <div className="flex justify-between items-center mb-4">
-                      <span className='text-dark-gray font-bold tracking-wide'>Valor total:</span>
-                      <span className="text-dark-gray font-bold">R$ 100,00</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <button className="text-sm text-dark-gray-2 underline">Esvaziar</button>
-                      <button onClick={handleViewCart} className="bg-primary text-sm text-white px-4 py-2 rounded-lg">
-                        Ver Carrinho
-                      </button>
-                    </div>
-                  </div>
+                  <CartPopUp
+                    onClose={() => setIsCartPopupOpen(false)}
+                    onViewCart={handleViewCart}
+                  />
                 )}
               </div>
             </div>
           )}
         </div>
-
         {!isLoginPage && (
           <nav className="hidden lg:block pt-12">
             <ul className="flex space-x-4">
@@ -167,8 +127,29 @@ const Header = () => {
           </nav>
         )}
       </div>
+      <MenuSmallNav isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      {isSearchInputVisible && (
+        <div className='container bg-white px-4 pb-2 mx-auto mt-2 relative'>
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Pesquisar produto"
+              value={searchTerm} // Bind searchTerm to the input
+              onChange={(e) => setSearchTerm(e.target.value)} // Update searchTerm on input change
+              onKeyPress={handleSearchKeyPress} // Trigger search on Enter key press
+              className='bg-light-gray-3 flex pl-4 py-2 w-full md:w-[300px] rounded-lg border-none focus:outline-none'
+            />
+            <img
+              src={SearchIcon}
+              alt="Search Icon"
+              onClick={handleSearch} // Trigger search on click
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+            />
+          </div>
+        </div>
+      )}
     </header>
   );
-}
+};
 
 export default Header;

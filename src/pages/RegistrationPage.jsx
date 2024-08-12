@@ -13,38 +13,29 @@ const LoginPage = () => {
           <div className="w-full max-w-xl md:mt-20">
             <div className="bg-white p-8 rounded-lg shadow-lg">
               <div className="text-dark-gray-2 tracking-wide">
-                <h1 className="text-4xl text-dark-gray mb-2 font-extrabold">Acesse sua conta</h1>
+                <h1 className="text-4xl text-dark-gray mb-2 font-extrabold">Crie a sua conta</h1>
                 <p className="pb-4 text-sm md:text-base">
-                  Novo cliente? Então registre-se <NavLink to="/registration" className="underline">aqui</NavLink>.
+                  Já possui uma conta? Entre <span className="underline cursor-pointer">aqui</span>.
                 </p>
               </div>
               <form className="mt-6">
-                <label htmlFor="email" className="block font-bold text-sm text-dark-gray mb-2">
-                  Login *
+                <label htmlFor="email" className="block text-sm font-medium text-dark-gray mb-2">
+                  E-mail
                 </label>
                 <input
                   type="text"
                   id="email"
                   className="w-full px-4 py-4 border bg-light-gray-3 border-light-gray-3 rounded-lg focus:outline-none focus:ring-primary focus:border-transparent mb-6"
-                  placeholder="Insira seu login ou e-mail"
+                  placeholder="Insira seu e-mail"
                 />
-                <label htmlFor="password" className="block text-sm font-bold text-dark-gray mb-2">
-                  Senha *
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  className="w-full px-4 py-4 border bg-light-gray-3 border-light-gray-3 rounded-lg focus:outline-none focus:ring-primary focus:border-transparent mb-6"
-                  placeholder="Insira sua senha"
-                />
-
-                <NavLink to="/" className="underline">Esqueci minha senha</NavLink>
-                <button
-                  type="submit"
-                  className="w-full bg-primary text-white py-3 mt-4 rounded-lg font-bold hover:bg-tertiary"
-                >
-                  Acessar Conta
-                </button>
+                <NavLink to="/login/register">
+                  <button
+                    type="submit"
+                    className="w-full bg-primary text-white py-3 mt-4 rounded-lg font-bold hover:bg-tertiary"
+                  >
+                    Criar Conta
+                  </button>
+                </NavLink>
               </form>
               <div className="flex items-center justify-center mt-8">
                 <p className="text-base text-dark-gray-2 mr-2">
@@ -52,7 +43,7 @@ const LoginPage = () => {
                 </p>
                 <div className="flex">
                   <img src={GmailIcon} alt="Gmail icon" className="mr-2" />
-                  <img src={FacebookIcon} alt="Facebook icon" />
+                  <img src={FacebookIcon} alt="Gmail icon" />
                 </div>
               </div>
             </div>
@@ -76,3 +67,4 @@ const LoginPage = () => {
 }
 
 export default LoginPage;
+ 

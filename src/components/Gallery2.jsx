@@ -25,66 +25,66 @@ const Gallery = ({ className, width, height, radius, showThumbs, images }) => {
 
   return (
     <>
-      <div 
-        className={`relative ${className}`} 
+      <div
+        className={`relative ${className}`}
         style={{ width, height }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        >
+      >
         <div className="overflow-hidden lg:h-[571px]" style={{ borderRadius: radius, backgroundColor: images[currentIndex].bgColor }}>
-          <img 
-            src={images[currentIndex].src} 
-            alt={`image ${currentIndex + 1}`} 
-            className="w-full h-full px-24 pt-12"
+          <img
+            src={images[currentIndex].src}
+            alt={`image ${currentIndex + 1}`}
+            className="w-full h-full px-12 py-12 md:px-24 md:pt-12"
             style={{ borderRadius: radius }}
-            />
+          />
         </div>
         <button
           onClick={prevImage}
           disabled={currentIndex === 0}
           className={`absolute left-3 top-1/2 trasform -translate-y-1/2 bg-transparent border-none cursor-pointer ${!isHovered ? 'hidden' : ''} disabled:opacity-50`}
-          >
+        >
           <img src={arrowLeft} alt="Previous" />
         </button>
-        <button 
+        <button
           onClick={nextImage}
           disabled={currentIndex === images.length - 1}
           className={`absolute right-3 top-1/2 transform -translate-y-1/2 bg-transparent border-none cursor-pointer ${!isHovered ? 'hidden' : ''} disabled:opacity-50`}
-          >
+        >
           <img src={arrowRight} alt="Next" />
         </button>
         {showThumbs ? (
-          <div className="flex mt-4 gap-8">
+          <div className="flex mt-4 gap-4 md:gap-8">
             {images.map((image, index) => (
               <div
                 key={index}
                 onClick={() => selectImage(index)}
-                alt={`Thumbnall ${index + 1}`} 
-                className={`w-28 h-24 px-4 cursor-pointer ${index === currentIndex ? 'border-2 border-primary' : ''}`}
+                alt={`Thumbnall ${index + 1}`}
+                className={`w-24 h-24 md:w-32 md:h-28 md:px-4 cursor-pointer ${index === currentIndex ? 'border-2 border-primary' : ''}`}
                 style={{ backgroundColor: image.bgColor, borderRadius: radius }}
-                >
+              >
                 <img
-                  key={index} 
+                  key={index}
                   src={image.src}
                   className="w-full h-full"
-                  style={{ borderRadius: radius }} 
-                  />
+                  style={{ borderRadius: radius }}
+                />
               </div>
-              ))}
-          </div>  
+            ))}
+          </div>
         ) : (
           <div className="flex justify-center mt-4 space-x-2">
             {images.map((_, index) => (
-              <div 
+              <div
                 key={index}
                 onClick={() => selectImage(index)}
                 className={`w-2.5 h-2.5 rounded-full cursor-pointer ${index === currentIndex ? 'bg-primary' : 'bg-gray-400'}`}
-                />
+              />
             ))}
           </div>
         )}
       </div>
-    </>  
+    </>
   );
 };
 
@@ -105,5 +105,5 @@ Gallery.propTypes = {
 Gallery.defaultProps = {
   showThumbs: true,
 }
- 
+
 export default Gallery;

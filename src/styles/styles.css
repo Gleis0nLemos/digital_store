@@ -86,3 +86,13 @@ body {
   background-color: transparent;
   border: none;
 }
+
+/* Desativar rolagem da página principal */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Estilizar o menu de filtros */
+.filter-menu {
+  overflow-y: auto;
+}

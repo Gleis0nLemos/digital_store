@@ -1,121 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import Layout from '../pages/Layout';
 import ProductListing from '../components/ProductListing';
-import ShoesProduct from '../assets/products/shoes-product.svg';
 import FilterGroup from '../components/FilterGroup';
+import ProductsData from '../components/ProductsData';
+import FilterIcon from '../assets/filter-icon.svg';
 
 const ProductListingPage = () => {
+  const location = useLocation();
+  const [searchTerm, setSearchTerm] = useState('');
   const [sortOrder, setSortOrder] = useState('');
   const [filters, setFilters] = useState({
     brand: [],
     category: [],
     gender: [],
     state: [],
-  })
+  });
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const productsData = [
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      state: 'Novo',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$200.00',
-      state: 'Usado',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$200.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$200.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$300.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Masculino',
-      price: '$100.00',
-      priceDiscount: '$80.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Feminino',
-      price: '$200.00',
-      priceDiscount: '$180.00',
-    },
-    {
-      image: ShoesProduct,
-      category: 'Tênis',
-      name: 'K-Swiss V8 - Masculino',
-      brand: 'K-Swiss',
-      gender: 'Feminino',
-      price: '$500.00',
-      priceDiscount: '$450.00',
-    },
-  ];
+  useEffect(() => {
+    if (location.state?.searchTerm) {
+      setSearchTerm(location.state.searchTerm);
+    }
+  }, [location.state]);
+
+  useEffect(() => {
+    const body = document.body;
+    if (isSidebarOpen) {
+      body.classList.add('no-scroll');
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      body.style.marginRight = `${scrollbarWidth}px`;
+      body.style.overflow = 'hidden';
+    } else {
+      body.classList.remove('no-scroll');
+      body.style.marginRight = '0';
+      body.style.overflow = '';
+    }
+  
+    return () => {
+      body.classList.remove('no-scroll');
+      body.style.marginRight = '0';
+      body.style.overflow = '';
+    };
+  }, [isSidebarOpen]);
+  
+  const filteredProducts = useMemo(() => {
+    return ProductsData.filter(product => {
+      const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                product.brand.toLowerCase().includes(searchTerm.toLowerCase());
+
+      const matchesBrand = filters.brand.length === 0 || filters.brand.includes(product.brand);
+      const matchesCategory = filters.category.length === 0 || filters.category.includes(product.category);
+      const matchesState = filters.state.length === 0 || filters.state.includes(product.state);
+
+      return matchesSearchTerm && matchesBrand && matchesCategory && matchesState;
+    });
+  }, [searchTerm, filters]);
+
+  const sortedProducts = useMemo(() => {
+    return [...filteredProducts].sort((a, b) => {
+      if (sortOrder === 'lowest') {
+        return a.price - b.price;
+      }
+      if (sortOrder === 'highest') {
+        return b.price - a.price;
+      }
+      return 0;
+    });
+  }, [filteredProducts, sortOrder]);
 
   const handleSortChange = (event) => {
     setSortOrder(event.target.value);
@@ -123,11 +76,11 @@ const ProductListingPage = () => {
 
   const handleFilterChange = (event) => {
     const { name, value, checked } = event.target;
-    setFilters((prevFilters) => ({
+    setFilters(prevFilters => ({
       ...prevFilters,
-      [name]: checked 
-        ? [...prevFilters[name], value] 
-        : prevFilters[name].filter((item) => item !== value),
+      [name]: checked
+        ? [...prevFilters[name], value]
+        : prevFilters[name].filter(item => item !== value),
     }));
   };
 
@@ -138,7 +91,6 @@ const ProductListingPage = () => {
       options: [
         { text: 'Adidas', value: 'Adidas', type: 'checkbox' },
         { text: 'Balenciaga', value: 'Balenciaga', type: 'checkbox' },
-        { text: 'K-Swiss', value: 'K-Swiss', type: 'checkbox' },
         { text: 'Nike', value: 'Nike', type: 'checkbox' },
         { text: 'Puma', value: 'Puma', type: 'checkbox' },
       ],
@@ -170,64 +122,76 @@ const ProductListingPage = () => {
         { text: 'Usado', value: 'Usado', type: 'radio' },
       ],
     },
-  ]
+  ];
 
-  const sortedProducts = [...productsData].sort((a, b) => {
-    if (sortOrder === 'lowest') {
-      return a.price - b.price;
-    }
-    if (sortOrder === 'highest') {
-      return b.price - a.price;
-    }
-    return 0;
-  })
-
-  const filteredProducts = sortedProducts.filter((product) => {
-    return Object.keys(filters).every((filterKey) => {
-      if (filters[filterKey].length === 0) {
-        return true;
-      }
-
-      return filters[filterKey].includes(product[filterKey]);
-    });
-  });
+  const toggleSidebar = () => {
+    setIsSidebarOpen(prev => !prev);
+  };
 
   return (
-    <Layout> 
+    <Layout>
       <div className='container mx-auto c-max-width p-5'>
-        <div className='flex items-center justify-between'>
-          <div htmlFor="sort" className='block text-dark-gray-2 text-sm my-5'>
-            <span className='font-bold'>Resultados para #pesquisa</span> - #numero produtos
-          </div>
-          <div className='flex items-center text-sm'>
+        <div className='flex flex-col md:flex-row md:items-center justify-between'>
+          {searchTerm && (
+            <div className='flex text-dark-gray-2 text-sm my-5 w-full order-2 md:order-1 md:w-auto'>
+              <span className='font-bold pr-1'>Resultados para "{searchTerm}"</span> - {sortedProducts.length} produtos
+            </div>
+          )}
+          <div className='flex items-center text-sm w-full md:w-auto mt-4 order-1 md:order-2 md:mt-0'>
             <label htmlFor="sort" className='font-bold pr-2'>Ordenar por:</label>
             <select 
               id="sort"
               value={sortOrder}
               onChange={handleSortChange}
-              className='h-15 p-2 rounded-md text-dark-gray-2 custom-select'
-              >
+              className='h-15 p-2 mr-8 rounded-md text-dark-gray-2 custom-select md:w-auto'
+              aria-label="Ordenar por"
+            >
               <option value="">mais relevantes</option>
               <option value="lowest">Menor preço</option>
               <option value="highest">Maior preço</option>
             </select>
+            <button onClick={toggleSidebar} className='flex lg:hidden'>
+              <img src={FilterIcon} alt="Filtro" />
+            </button>
           </div>
         </div>
+
+        {/* Sobreposição para o fundo */}
+        {isSidebarOpen && (
+          <div className='fixed top-[91px] inset-0 bg-black opacity-50 z-40' onClick={toggleSidebar}></div>
+        )}
+
+        {/* Menu lateral para filtros */}
+        <div className={`fixed top-[91px] left-0 h-full bg-white shadow-lg transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 z-50 md:w-3/5 lg:w-4/5 filter-menu`}>
+          <div className='p-5'>
+            <button onClick={toggleSidebar} className='text-gray-500'>
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M6 18L18 6M6 6l12 12" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <FilterGroup 
+              title="Filtrar por"
+              filters={filterOptions}
+              onChange={handleFilterChange}
+            />
+          </div>
+        </div>
+
         <div className='flex pb-24'>
           <div className='pt-5 mr-4 hidden lg:block'>
             <FilterGroup 
               title="Filtrar por"
               filters={filterOptions}
               onChange={handleFilterChange}
-              />
+            />
           </div>
-          <div className='pt-5 px-4 md:px-0'>
-            <ProductListing products={filteredProducts} columns={3}/>
+          <div className='pt-5 md:px-0'>
+            <ProductListing products={sortedProducts} columns={3}/>
           </div>
         </div>
       </div>
     </Layout>
-  )
+  );
 };
 
 export default ProductListingPage;
